@@ -22,7 +22,12 @@ namespace vcn.Entities
         public int PhoneNumber { get; set; }
         [Required, EmailAddress]
         public string Email { get; set; }
-        public virtual ICollection<UserAccount>UserAccounts { get; set; }
+        [ForeignKey("UserAccountOf")]
+        public int UserAccount_id { get; set; }
+        public virtual UserAccount UserAccountOf { get; set; }
+/// <summary>
+/// /
+/// </summary>
         [ForeignKey("MessageOf")]
         public int MessageId { get; set; }
         [ForeignKey("CommentOf")]

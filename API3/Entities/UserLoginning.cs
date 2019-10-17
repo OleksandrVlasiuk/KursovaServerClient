@@ -16,6 +16,8 @@ namespace vcn.Entities
         public string Login { get; set; }
         [Required]
         public string Password { get; set; }
+        [ForeignKey("UOf")]
+        public virtual UserAccount UserAccountOf { get; set; }
         [ForeignKey("UserAccountOf")]
         public virtual UserAccount UserAccountOf { get; set; }
     }

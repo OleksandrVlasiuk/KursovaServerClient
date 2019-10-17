@@ -23,15 +23,9 @@ namespace vcn.Entities
         public int PhoneNumber { get; set; }
         [Required,EmailAddress]
         public string Email { get; set; }
-        [ForeignKey("FriendsOf")]
-        public int Friends_id { get; set; }
-        public virtual Friends FriendsOf { get; set; }
+        public virtual ICollection<Friends>Friends { get; set; }
         public virtual UserLoginning UserLoginningOf { get; set; }
-        [ForeignKey("PostOf")]
-        public int Post_id { get; set; }
-        public virtual Post PostOf { get; set; }
-        [ForeignKey("MessageOf")]
-        public int Message_id { get; set; }
-        public virtual Message MessageOf { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
+        public virtual ICollection<Message> Messages { get; set; }
     }
 }

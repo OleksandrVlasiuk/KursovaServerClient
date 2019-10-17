@@ -19,6 +19,9 @@ namespace vcn.Entities
         [ForeignKey("CommentOf")]
         public int CommentId { get; set; }
         public virtual Comments CommentOf { get; set; }
-        public virtual ICollection<UserAccount> UserAccounts { get; set; }
+        [ForeignKey("UserAccountOf")]
+        public int UserAccount_id { get; set; }
+        public virtual UserAccount UserAccountOf { get; set; }
+
     }
 }
