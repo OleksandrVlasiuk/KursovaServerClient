@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28307.539
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kursova", "Kursova\Kursova.csproj", "{0C8A3B5C-57F6-4773-9B67-361DB0C41DFC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Loginning", "Loginning\Loginning.csproj", "{D59E1BDE-8110-476A-B922-E4B0E267C8D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API3", "API3\API3.csproj", "{BBB68B04-871F-4366-82D7-3E14F83D5FF6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{0C8A3B5C-57F6-4773-9B67-361DB0C41DFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C8A3B5C-57F6-4773-9B67-361DB0C41DFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C8A3B5C-57F6-4773-9B67-361DB0C41DFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D59E1BDE-8110-476A-B922-E4B0E267C8D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D59E1BDE-8110-476A-B922-E4B0E267C8D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D59E1BDE-8110-476A-B922-E4B0E267C8D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D59E1BDE-8110-476A-B922-E4B0E267C8D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBB68B04-871F-4366-82D7-3E14F83D5FF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBB68B04-871F-4366-82D7-3E14F83D5FF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBB68B04-871F-4366-82D7-3E14F83D5FF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBB68B04-871F-4366-82D7-3E14F83D5FF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
