@@ -16,12 +16,14 @@ namespace vcn.Entities
         public string File { get; set; }
         [Required]
         public int Likes { get; set; }
-        [ForeignKey("CommentOf")]
-        public int CommentId { get; set; }
-        public virtual Comments CommentOf { get; set; }
         [ForeignKey("UserAccountOf")]
         public int UserAccount_id { get; set; }
+        [ForeignKey("FriendsOf")]
+        public int Friends_id { get; set; }
+
         public virtual UserAccount UserAccountOf { get; set; }
 
+        public virtual Friends FriendsOf { get; set; }
+        public virtual ICollection<Comments>Comments{ get; set; }
     }
 }

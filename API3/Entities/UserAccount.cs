@@ -8,7 +8,7 @@ using System.Web;
 
 namespace vcn.Entities
 {
-    [Table("tbl.UsersAccouns")]
+    [Table("tbl.UsersAccounts")]
     public class UserAccount
     {
         [Key]

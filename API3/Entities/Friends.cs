@@ -25,14 +25,9 @@ namespace vcn.Entities
         [ForeignKey("UserAccountOf")]
         public int UserAccount_id { get; set; }
         public virtual UserAccount UserAccountOf { get; set; }
-/// <summary>
-/// /
-/// </summary>
-        [ForeignKey("MessageOf")]
-        public int MessageId { get; set; }
-        [ForeignKey("CommentOf")]
-        public int CommentId { get; set; }
-        public virtual Comments CommentOf { get; set; }
-        public virtual Message MessageOf { get; set; }
+        public virtual ICollection<Message> Messages { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
+        public virtual ICollection<Comments> Comments { get; set; }
+
     }
 }

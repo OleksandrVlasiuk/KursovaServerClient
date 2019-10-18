@@ -14,6 +14,11 @@ namespace vcn.Entities
         public int Id { get; set; }
         [Required]
         public string Info { get; set; }
-        public virtual ICollection<Post> Posts { get; set; }
+        [ForeignKey("FriendsOf")]
+        public int FriendsId { get; set; }
+        public virtual Friends FriendsOf { get; set; }
+        [ForeignKey("PostOf")]
+        public int PostId { get; set; }
+        public virtual Post PostOf { get; set; }
     }
 }

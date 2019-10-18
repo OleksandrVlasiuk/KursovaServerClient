@@ -10,15 +10,13 @@ namespace vcn.Entities
     [Table("tbl.UsersLogIn")]
     public class UserLoginning
     {
-        [Key]
+        [Key, ForeignKey("UserAccountOf")]
         public int Id { get; set; }
         [Required]
         public string Login { get; set; }
         [Required]
         public string Password { get; set; }
-        [ForeignKey("UOf")]
         public virtual UserAccount UserAccountOf { get; set; }
-        [ForeignKey("UserAccountOf")]
-        public virtual UserAccount UserAccountOf { get; set; }
+   
     }
 }

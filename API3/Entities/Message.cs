@@ -19,7 +19,7 @@ namespace API3.Entities
         public int UserAccount_id { get; set; }
         public virtual UserAccount UserAccountOf { get; set; }
         [ForeignKey("FriendsOf")]
+        public int Friends_Id { get; set; }
         public virtual Friends FriendsOf { get; set; }
-
     }
 }
