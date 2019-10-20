@@ -78,7 +78,7 @@
                 <Grid Height="30" Width="250">
                     <Ellipse Width="30" Height="30" StrokeThickness="0.5" Stroke="White" HorizontalAlignment="Left">
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="Assets/pexels-photo-638791.jpeg" Stretch="UniformToFill"/>
+                            <ImageBrush ImageSource="Assets/ForAcc7.jpg" Stretch="UniformToFill"/>
                         </Ellipse.Fill>
                     </Ellipse>
                     <TextBlock Width="150" HorizontalAlignment="Left"  Margin="35 0" Text="Your friend Carl is on instagram as CJ" FontSize="10" TextWrapping="Wrap"/>
@@ -95,31 +95,31 @@
                 </Ellipse>
                 <Ellipse Height="70" Width="70" Margin="10" Stroke="White" StrokeThickness="3">
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="Assets/pexels-photo-301290.jpeg" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="Assets/TestIcon2.png" Stretch="UniformToFill"/>
                     </Ellipse.Fill>
                 </Ellipse>
                 <Ellipse Height="70" Width="70" Margin="10" Stroke="White" StrokeThickness="3">
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="Assets/pexels-photo-614810.jpeg" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="Assets/TestIcon2.png" Stretch="UniformToFill"/>
                     </Ellipse.Fill>
                 </Ellipse>
                 <Ellipse Height="70" Width="70" Margin="10" Stroke="White" StrokeThickness="3">
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="Assets/pexels-photo-638791.jpeg" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="Assets/TestIcon2.png" Stretch="UniformToFill"/>
                     </Ellipse.Fill>
                 </Ellipse>
             </StackPanel>
             <ScrollViewer Height="340">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Image Width="200" Height="200" Margin="20" Source="Assets/pexels-photo-257360.jpeg" Stretch="UniformToFill"/>
-                        <Image Width="200" Height="200" Margin="20" Source="Assets/pexels-photo-288583.jpeg" Stretch="UniformToFill"/>
-                        <Image Width="200" Height="200" Margin="20" Source="Assets/pexels-photo-790164.jpeg" Stretch="UniformToFill"/>
+                        <Image Width="200" Height="200" Margin="20" Source="Assets/TestIcon2.png" Stretch="UniformToFill"/>
+                        <Image Width="200" Height="200" Margin="20" Source="Assets/TestIcon2.png" Stretch="UniformToFill"/>
+                        <Image Width="200" Height="200" Margin="20" Source="Assets/TestIcon2.png" Stretch="UniformToFill"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Image Width="200" Height="200" Margin="20" Source="Assets/food-salad-restaurant-person.jpg" Stretch="UniformToFill"/>
-                        <Image Width="200" Height="200" Margin="20" Source="Assets/pexels-photo-797640.jpeg" Stretch="UniformToFill"/>
-                        <Image Width="200" Height="200" Margin="20" Source="Assets/pexels-photo-790164.jpeg" Stretch="UniformToFill"/>
+                        <Image Width="200" Height="200" Margin="20" Source="Assets/TestIcon2.png" Stretch="UniformToFill"/>
+                        <Image Width="200" Height="200" Margin="20" Source="Assets/TestIcon2.png" Stretch="UniformToFill"/>
+                        <Image Width="200" Height="200" Margin="20" Source="Assets/TestIcon2.png" Stretch="UniformToFill"/>
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>

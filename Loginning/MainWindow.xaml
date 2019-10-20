@@ -4,9 +4,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Loginning"
-        mc:Ignorable="d" Height="415.116" Width="540.116" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen">
-    <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Height="38" Margin="129,251,0,0" VerticalAlignment="Top" Width="281"/>
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d" Height="600" Width="400" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen">
 
+    <Grid Background="#FF44325F">
+        <StackPanel Margin="50">
+            <Image Source="/Assets/LogInIcon3.png" Width="96" Height="96"/>
+            <Border Background="White" Margin="10 20" CornerRadius="5">
+                <StackPanel Margin="25">
+                    <TextBox Text="{Binding Summoner}" Margin="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Login"/>
+                    <TextBox Text="{Binding Summoner}" Margin="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Password"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Margin="15 50" Content="CANCEL"/>
+                        <Button x:Name="ButtonSignUp" Margin="15 50" Content="SEARCH"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </StackPanel>
     </Grid>
 </Window>
