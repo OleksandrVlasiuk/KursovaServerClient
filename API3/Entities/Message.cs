@@ -14,7 +14,7 @@ namespace API3.Entities
         [Key]
         public int Id { get; set; }
         [Required]
-        public int About { get; set; }
+        public string About { get; set; }
         [ForeignKey("UserAccountOf")]
         public int UserAccount_id { get; set; }
         public virtual UserAccount UserAccountOf { get; set; }

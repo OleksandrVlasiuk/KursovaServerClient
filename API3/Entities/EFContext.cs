@@ -1,4 +1,6 @@
 ﻿using API3.Entities;
+using LoginAPI.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +9,7 @@ using System.Web;
 
 namespace vcn.Entities
 {
-    public class EFContext:DbContext
+    public class EFContext: IdentityDbContext<ApplicationLogin>
     {
         public EFContext(DbContextOptions<EFContext> options) :base(options)
         {
@@ -18,6 +20,5 @@ namespace vcn.Entities
         public virtual DbSet<Message>Messages { get; set; }
         public virtual DbSet<Post>Posts { get; set; }
         public virtual DbSet<UserAccount>UserAccounts { get; set; }
-        public virtual DbSet<UserLoginning>UserLoginnings { get; set; } 
     }
 }
