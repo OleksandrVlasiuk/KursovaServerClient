@@ -20,10 +20,10 @@ namespace API3.Controllers
         }
 
         // GET api/values
-        [HttpGet("GetComments")]
-        public ContentResult Get()
+        [HttpGet("GetComments/{id}")]
+        public ContentResult Get(string id)
         {
-            List<Comments> comments = _context.Comments.ToList();
+            List<Comments> comments = _context.Comments.Where(t => t.UserAccountId == id).ToList();
             string json = JsonConvert.SerializeObject(comments);
             return Content(json, "application/json");
         }
@@ -31,7 +31,7 @@ namespace API3.Controllers
    
 
         // POST api/values
-        [HttpPost]
+        [HttpPost("AddComment")]
         public void Post(Comments Comment)
         {
                 _context.Comments.Add(Comment);
@@ -39,26 +39,31 @@ namespace API3.Controllers
         }
 
         // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id,string value)
+        [HttpPut("EditComment/{id}/{commentId}")]
+        public void Put(string id,int commentId,string value)
         {
-            var comment = _context.Comments.FirstOrDefault(t => t.Id == id);
-            if (comment != null)
+            if (_context.Comments.FirstOrDefault(t => t.Id == commentId).UserAccountId == id)
             {
-                comment.Info = value;
-                _context.SaveChanges();
-            }    
+                var comment = _context.Comments.FirstOrDefault(t => t.Id == commentId);
+                if (comment != null)
+                {
+                    comment.Info = value;
+                    _context.SaveChanges();
+                }
+            }
         }
 
         // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("DeleteComment/{id}/{Commentid}")]
+        public void Delete(string id ,int Commentid)
         {
-            var comment = _context.Comments.FirstOrDefault(t => t.Id == id);
-            if (comment != null)
-            {
-                _context.Remove(comment);
-                _context.SaveChanges();
+            if (_context.Comments.FirstOrDefault(t=>t.Id==Commentid).UserAccountId == id) {
+                var comment = _context.Comments.FirstOrDefault(t => t.Id == Commentid);
+                if (comment != null)
+                {
+                    _context.Comments.Remove(comment);
+                    _context.SaveChanges();
+                }
             }
         }
     }

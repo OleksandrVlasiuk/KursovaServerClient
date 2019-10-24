@@ -14,9 +14,9 @@ namespace vcn.Entities
         public int Id { get; set; }
         [Required]
         public string Info { get; set; }
-        [ForeignKey("FriendsOf")]
-        public int FriendsId { get; set; }
-        public virtual Friends FriendsOf { get; set; }
+        [ForeignKey("UserAccountOf")]
+        public string UserAccountId { get; set; }
+        public virtual UserAccount UserAccountOf { get; set; }
         [ForeignKey("PostOf")]
         public int PostId { get; set; }
         public virtual Post PostOf { get; set; }

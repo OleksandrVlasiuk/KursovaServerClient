@@ -8,18 +8,16 @@ using System.Web;
 
 namespace vcn.Entities
 {
-    public class Friends
+    [Table("tbl.Friends")]
+    public class Friend
     {
         [Key]
         public int Id { get; set; }
 
         [ForeignKey("UserAccountOf")]
-        public int UserAccount_id { get; set; }
+        public string UserAccount_id { get; set; }
         public virtual UserAccount UserAccountOf { get; set; }
-
-        [ForeignKey("FriendOf")]
-        public int Friend_id { get; set; }
-        public virtual UserAccount FriendOf { get; set; }
+        public virtual ICollection<UserFriend> UserFriends { get; set; }
 
     }
 }

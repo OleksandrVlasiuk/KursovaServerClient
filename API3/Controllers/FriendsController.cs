@@ -21,10 +21,14 @@ namespace API3.Controllers
         }
 
         // GET api/values
-        [HttpGet("GetFriends")]
-        public ContentResult Get()
+        [HttpGet("GetFriend/{id}")]
+        public ContentResult Get(string id)
         {
-            List<Friends> friends = _context.Friends.ToList();
+            List<UserAccount> friends = new List<UserAccount>();
+           foreach (var item in _context.UserFriends.Where(t=>t.UserAccount_id==id))
+            {
+                friends.Add(item.FriendOf.UserAccountOf);
+            }
             string json = JsonConvert.SerializeObject(friends);
             return Content(json, "application/json");
         }
@@ -32,23 +36,34 @@ namespace API3.Controllers
 
 
         // POST api/values
-        [HttpPost]
-        public void Post(Friends friends)
+        [HttpPost("PostFriend/{id}/{friendId}")]
+        public void Post(string id,int friendId)
         {
-            _context.Friends.Add(friends);
-            _context.SaveChanges();
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-            var friends = _context.Friends.FirstOrDefault(t => t.Id == id);
-            if (friends != null)
+            if (_context.UserFriends.FirstOrDefault(t => (t.UserAccount_id == id && t.FriendOf_id == friendId)) == null)
             {
-                _context.Remove(friends);
+                UserFriend ua = new UserFriend() {
+                    UserAccount_id=id,
+                    FriendOf_id=friendId
+                };
+                _context.UserFriends.Add(ua);
                 _context.SaveChanges();
             }
         }
+
+        // DELETE api/values/5
+        [HttpDelete("DeleteFriend/{id}/{friendId}")]
+        public void Delete(string id,int friendId)
+        {
+            if (_context.UserFriends.FirstOrDefault(t => (t.UserAccount_id == id && t.FriendOf_id == friendId)) != null)
+            {
+                UserFriend ua = new UserFriend()
+                {
+                    UserAccount_id = id,
+                    FriendOf_id = friendId
+                };
+                _context.UserFriends.Remove(ua);
+                _context.SaveChanges();
+            }
+            }
     }
 }

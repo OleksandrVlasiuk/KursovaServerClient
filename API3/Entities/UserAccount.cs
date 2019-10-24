@@ -18,8 +18,9 @@ namespace vcn.Entities
         public string Image { get; set; }
         [Required]
         public string Description { get; set; }
-        public virtual ICollection<Friends>Friends { get; set; }
+        public virtual ICollection<Friend>Friends { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
         public virtual ICollection<Message> Messages { get; set; }
+        public virtual ICollection<UserFriend> UserFriends { get; set; }
     }
 }

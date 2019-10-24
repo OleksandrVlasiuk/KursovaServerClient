@@ -21,10 +21,10 @@ namespace API3.Controllers
         }
 
         // GET api/values
-        [HttpGet("GetMessages")]
-        public ContentResult Get()
+        [HttpGet("GetMessages/{id}")]
+        public ContentResult Get(string id)
         {
-            List<Message> messages = _context.Messages.ToList();
+            List<Message> messages = _context.Messages.Where(t => t.UserAccount_id == id).ToList();
             string json = JsonConvert.SerializeObject(messages);
             return Content(json, "application/json");
         }
@@ -32,7 +32,7 @@ namespace API3.Controllers
 
 
         // POST api/values
-        [HttpPost]
+        [HttpPost("AddMessage")]
         public void Post(Message message)
         {
             _context.Messages.Add(message);
@@ -40,26 +40,32 @@ namespace API3.Controllers
         }
 
         // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, string value)
+        [HttpPut("EditMessage/{id}/{messageId}")]
+        public void Put(string id, int messageId, string value)
         {
-            var message = _context.Messages.FirstOrDefault(t => t.Id == id);
-            if (message != null)
+            if (_context.Messages.FirstOrDefault(t => t.Id == messageId).UserAccount_id == id)
             {
-                message.About = value;
-                _context.SaveChanges();
+                var message = _context.Messages.FirstOrDefault(t => t.Id == messageId);
+                if (message != null)
+                {
+                    message.About = value;
+                    _context.SaveChanges();
+                }
             }
         }
 
         // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("DeleteMessage/{id}/{Messageid}")]
+        public void Delete(string id, int Messageid)
         {
-            var message = _context.Messages.FirstOrDefault(t => t.Id == id);
-            if (message != null)
+            if (_context.Messages.FirstOrDefault(t => t.Id == Messageid).UserAccount_id == id)
             {
-                _context.Remove(message);
-                _context.SaveChanges();
+                var message = _context.Messages.FirstOrDefault(t => t.Id == Messageid);
+                if (message != null)
+                {
+                    _context.Messages.Remove(message);
+                    _context.SaveChanges();
+                }
             }
         }
     }
