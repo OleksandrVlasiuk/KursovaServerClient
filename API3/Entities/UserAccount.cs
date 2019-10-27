@@ -1,4 +1,5 @@
 ﻿using API3.Entities;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,23 +10,17 @@ using System.Web;
 namespace vcn.Entities
 {
     [Table("tbl.UsersAccounts")]
-    public class UserAccount
+    public class UserAccount:IdentityUser
     {
-        [Key]
-        public int Id { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
         public string Image { get; set; }
         [Required]
         public string Description { get; set; }
-        [Required]
-        public int PhoneNumber { get; set; }
-        [Required,EmailAddress]
-        public string Email { get; set; }
-        public virtual ICollection<Friends>Friends { get; set; }
-        public virtual UserLoginning UserLoginningOf { get; set; }
+        public virtual ICollection<Friend>Friends { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
         public virtual ICollection<Message> Messages { get; set; }
+        public virtual ICollection<UserFriend> UserFriends { get; set; }
     }
 }

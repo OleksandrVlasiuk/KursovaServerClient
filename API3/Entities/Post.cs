@@ -17,13 +17,8 @@ namespace vcn.Entities
         [Required]
         public int Likes { get; set; }
         [ForeignKey("UserAccountOf")]
-        public int UserAccount_id { get; set; }
-        [ForeignKey("FriendsOf")]
-        public int Friends_id { get; set; }
-
+        public string UserAccount_id { get; set; }
         public virtual UserAccount UserAccountOf { get; set; }
-
-        public virtual Friends FriendsOf { get; set; }
         public virtual ICollection<Comments>Comments{ get; set; }
     }
 }
