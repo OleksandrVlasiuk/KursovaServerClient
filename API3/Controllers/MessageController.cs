@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API3.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using vcn.Entities;
@@ -40,8 +41,9 @@ namespace API3.Controllers
         }
 
         // PUT api/values/5
-        [HttpPut("EditMessage/{id}/{messageId}")]
-        public void Put(string id, int messageId, string value)
+        [Authorize]
+        [HttpPut("EditMessage/{messageId}")]
+        public void Put(int messageId, string value)
         {
             if (_context.Messages.FirstOrDefault(t => t.Id == messageId).UserAccount_id == id)
             {
