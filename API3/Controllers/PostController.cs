@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using API3.Models;
 using LoginAPI.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
@@ -28,32 +32,19 @@ namespace API3.Controllers
             _configuration = configuration;
         }
 
-        // GET api/values
-        [Authorize]
-        [HttpGet("GetPostss")]
-        public async Task<IActionResult> Get()
-        {
-            ApplicationLogin login = await _userManager.FindByNameAsync(this.User.Identity.Name);
-            List<Post> posts = _context.Posts.Where(t => t.UserAccountId == id).ToList();
-            string json = JsonConvert.SerializeObject(comments);
-            return Content(json, "application/json");
-        }
-
-
-
         // POST api/values
         [HttpPost("AddPost")]
-        public async Task<IActionResult> Post([FromBody]ModelPost post)
+        public async Task<IActionResult> Post([FromBody]PostModel model)
         {
-            ApplicationLogin user = await _userManager.FindByNameAsync(this.User.Identity.Name);
+            UserAccount user = await _userManager.FindByNameAsync(this.User.Identity.Name);
             try
             {
                 string nameOfImage = string.Empty;
-                if (model.Image != null)
+                if (model.File != null)
                 {
                     string directory = _env.ContentRootPath;
                     string path = Path.Combine(directory, "Content", _configuration["ProductImages"]);
-                    byte[] imageBytes = Convert.FromBase64String(model.Image);
+                    byte[] imageBytes = Convert.FromBase64String(model.File);
                     using (MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length))
                     {
                         var image = Image.FromStream(ms);
@@ -64,12 +55,14 @@ namespace API3.Controllers
                     }
 
                 }
-                Product product = new Product()
+                Post post = new Post()
                 {
-                    Name = model.Name,
-                    Image = nameOfImage
+                    Id = model.Id,
+                    File = nameOfImage,
+                    Likes = model.Likes,
+                    UserAccount_id = model.UserAccount_id
                 };
-                _context.Products.Add(product);
+                _context.Posts.Add(post);
 
  
 
@@ -84,20 +77,23 @@ namespace API3.Controllers
             }
         }
 
-
         // DELETE api/values/5
-        [HttpDelete("DeletePost/{Postid}")]
-        public void Delete(int postid)
+        [HttpDelete("DeletePost/{postid}")]
+        public async Task<IActionResult> Delete(int postid)
         {
-            if (_context.Comments.FirstOrDefault(t => t.Id == Commentid).UserAccountId == id)
+            ApplicationLogin user = await _userManager.FindByNameAsync(this.User.Identity.Name);
+
+            if (_context.Posts.FirstOrDefault(t => t.Id == postid).UserAccount_id == user.Id)
             {
-                var comment = _context.Comments.FirstOrDefault(t => t.Id == Commentid);
-                if (comment != null)
+                var post = _context.Posts.FirstOrDefault(t => t.Id == postid);
+                if (post != null)
                 {
-                    _context.Comments.Remove(comment);
+                    _context.Posts.Remove(post);
                     _context.SaveChanges();
                 }
+                return Ok();
             }
+            return BadRequest();
         }
     }
 }

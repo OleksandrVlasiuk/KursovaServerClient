@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -35,7 +37,7 @@ namespace API3
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<EFContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("baseConnection")));
-            services.AddIdentity<ApplicationLogin, IdentityRole>().AddEntityFrameworkStores<EFContext>().AddDefaultTokenProviders();
+            services.AddIdentity<UserAccount, IdentityRole>().AddEntityFrameworkStores<EFContext>().AddDefaultTokenProviders();
 
             services.AddAuthentication(options =>
             {
@@ -68,6 +70,12 @@ namespace API3
             {
                 app.UseHsts();
             }
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                 Path.Combine(Directory.GetCurrentDirectory(), @"Content")),
+                RequestPath = "/api/content"
+            });
 
             app.UseHttpsRedirection();
             app.UseMvc();

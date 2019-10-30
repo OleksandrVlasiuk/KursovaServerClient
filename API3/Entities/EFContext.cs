@@ -9,7 +9,7 @@ using System.Web;
 
 namespace vcn.Entities
 {
-    public class EFContext: IdentityDbContext<ApplicationLogin>
+    public class EFContext: IdentityDbContext<UserAccount>
     {
         public EFContext(DbContextOptions<EFContext> options) :base(options)
         {
@@ -24,6 +24,7 @@ namespace vcn.Entities
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             modelBuilder.Entity<UserFriend>()
                 .HasKey(o =>new { o.FriendOf_id, o.UserAccount_id });
 
