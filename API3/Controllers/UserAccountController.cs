@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using API3.Models;
 using JwtExampleIdentity.Abstract;
-using LoginAPI.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -33,13 +32,13 @@ namespace API3.Controllers
             _signInManager = signInManager;
         }
 
-        [HttpGet("OutputAccount/{id}")]
-        public async Task<ActionResult<string>> GetAccount(string id)
-        {
+        //[HttpGet("OutputAccount/{id}")]
+        //public async Task<ActionResult<string>> GetAccount(string id)
+        //{
             
 
 
-        }
+        //}
 
         private string CreateTokenAsync(UserAccount user)
         {
@@ -87,9 +86,9 @@ namespace API3.Controllers
         {
             UserAccount user = new UserAccount()
             {
-                 = model.Login,
-                 = model.PhoneNumber,
-                UserName = model.Email
+                UserName = model.Login,
+                PhoneNumber = model.TelephoneNumber,
+                Email = model.Email
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
@@ -105,7 +104,7 @@ namespace API3.Controllers
         {
             UserAccount user = await _userManager.FindByNameAsync(this.User.Identity.Name);
 
-            var userAccount = _context.UserAccounts.FirstOrDefault(t => (t.Id) == user.Id);
+            var userAccount = _context.Users.FirstOrDefault(t => (t.Id) == user.Id);
             if (userAccount != null)
             {
                 userAccount.Name = model.Name;
@@ -128,7 +127,7 @@ namespace API3.Controllers
         {
             UserAccount user = await _userManager.FindByNameAsync(this.User.Identity.Name);
 
-            var loginAcc = _context.UserAccounts.FirstOrDefault(t => t.Id == user.Id);
+            var loginAcc = _context.Users.FirstOrDefault(t => t.Id == user.Id);
             if (loginAcc != null)
             {
                 _context.Remove(loginAcc);

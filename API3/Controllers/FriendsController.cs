@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API3.Entities;
-using LoginAPI.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -17,10 +16,10 @@ namespace API3.Controllers
     public class FriendsController : ControllerBase
     {
         private readonly EFContext _context;
-        private readonly UserManager<ApplicationLogin> _userManager;
+        private readonly UserManager<UserAccount> _userManager;
 
 
-        public FriendsController(EFContext context,UserManager<ApplicationLogin> userManager)
+        public FriendsController(EFContext context,UserManager<UserAccount> userManager)
         {
             _context = context;
             _userManager = userManager;
@@ -31,7 +30,7 @@ namespace API3.Controllers
         [HttpGet("GetFriend")]
         public async Task<IActionResult> Get()
         {
-            ApplicationLogin login = await _userManager.FindByNameAsync(this.User.Identity.Name);
+            UserAccount login = await _userManager.FindByNameAsync(this.User.Identity.Name);
             List<UserAccount> friends = new List<UserAccount>();
            foreach (var item in _context.UserFriends.Where(t=>t.UserAccount_id==login.Id))
             {
@@ -48,7 +47,7 @@ namespace API3.Controllers
         [HttpPost("PostFriend/{friendId}")]
         public async Task<IActionResult> Post(int friendId)
         {
-            ApplicationLogin login = await _userManager.FindByNameAsync(this.User.Identity.Name);
+            UserAccount login = await _userManager.FindByNameAsync(this.User.Identity.Name);
 
             if (_context.UserFriends.FirstOrDefault(t => (t.UserAccount_id == login.Id && t.FriendOf_id == friendId)) == null)
             {
@@ -69,7 +68,7 @@ namespace API3.Controllers
         [HttpDelete("DeleteFriend/{friendId}")]
         public async Task<IActionResult> Delete(int friendId)
         {
-            ApplicationLogin login = await _userManager.FindByNameAsync(this.User.Identity.Name);
+            UserAccount login = await _userManager.FindByNameAsync(this.User.Identity.Name);
             if (_context.UserFriends.FirstOrDefault(t => (t.UserAccount_id == login.Id && t.FriendOf_id == friendId)) != null)
             {
                 UserFriend ua = new UserFriend()

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API3.Entities;
+using API3.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using vcn.Entities;
@@ -15,17 +17,22 @@ namespace API3.Controllers
     public class MessageController : ControllerBase
     {
         private readonly EFContext _context;
+        private readonly UserManager<UserAccount> _userManager;
 
-        public MessageController(EFContext context)
+
+        public MessageController(EFContext context,UserManager<UserAccount>userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET api/values
-        [HttpGet("GetMessages/{id}")]
-        public ContentResult Get(string id)
+        [Authorize]
+        [HttpGet("GetMessages")]
+        public async Task<IActionResult>  Get()
         {
-            List<Message> messages = _context.Messages.Where(t => t.UserAccount_id == id).ToList();
+            UserAccount user = await _userManager.FindByNameAsync(this.User.Identity.Name);
+            List<Message> messages = _context.Messages.Where(t => t.UserAccount_id == user.Id).ToList();
             string json = JsonConvert.SerializeObject(messages);
             return Content(json, "application/json");
         }
@@ -33,19 +40,29 @@ namespace API3.Controllers
 
 
         // POST api/values
+
         [HttpPost("AddMessage")]
-        public void Post(Message message)
+        public async Task<IActionResult> Post([FromBody]MessageModel model)
         {
+            UserAccount user = await _userManager.FindByNameAsync(this.User.Identity.Name);
+            Message message = new Message()
+            {
+                Id = model.Id,
+                About = model.About,
+                UserAccount_id = user.Id
+            };
             _context.Messages.Add(message);
             _context.SaveChanges();
+            return Ok();
         }
 
         // PUT api/values/5
         [Authorize]
         [HttpPut("EditMessage/{messageId}")]
-        public void Put(int messageId, string value)
+        public async Task<IActionResult> Put(int messageId, string value)
         {
-            if (_context.Messages.FirstOrDefault(t => t.Id == messageId).UserAccount_id == id)
+            UserAccount user = await _userManager.FindByNameAsync(this.User.Identity.Name);
+            if (_context.Messages.FirstOrDefault(t => t.Id == messageId).UserAccount_id == user.Id)
             {
                 var message = _context.Messages.FirstOrDefault(t => t.Id == messageId);
                 if (message != null)
@@ -53,14 +70,17 @@ namespace API3.Controllers
                     message.About = value;
                     _context.SaveChanges();
                 }
+                return Ok();
             }
+            return BadRequest();
         }
 
         // DELETE api/values/5
-        [HttpDelete("DeleteMessage/{id}/{Messageid}")]
-        public void Delete(string id, int Messageid)
+        [HttpDelete("DeleteMessage/{Messageid}")]
+        public async Task<IActionResult> Delete(int Messageid)
         {
-            if (_context.Messages.FirstOrDefault(t => t.Id == Messageid).UserAccount_id == id)
+            UserAccount user = await _userManager.FindByNameAsync(this.User.Identity.Name);
+            if (_context.Messages.FirstOrDefault(t => t.Id == Messageid).UserAccount_id == user.Id)
             {
                 var message = _context.Messages.FirstOrDefault(t => t.Id == Messageid);
                 if (message != null)
@@ -68,7 +88,9 @@ namespace API3.Controllers
                     _context.Messages.Remove(message);
                     _context.SaveChanges();
                 }
+                return Ok();
             }
+            return BadRequest();
         }
     }
 }

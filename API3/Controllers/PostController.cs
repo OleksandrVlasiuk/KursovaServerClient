@@ -6,7 +6,6 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using API3.Models;
-using LoginAPI.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -20,11 +19,11 @@ namespace API3.Controllers
     public class PostController : Controller
     {
         private readonly EFContext _context;
-        private readonly UserManager<ApplicationLogin> _userManager;
+        private readonly UserManager<UserAccount> _userManager;
         private readonly IHostingEnvironment _env;
         private readonly IConfiguration _configuration;
 
-        public PostController(EFContext context,UserManager<ApplicationLogin> userManager,IHostingEnvironment env,IConfiguration configuration)
+        public PostController(EFContext context,UserManager<UserAccount> userManager,IHostingEnvironment env,IConfiguration configuration)
         {
             _context = context;
             _userManager = userManager;
@@ -37,6 +36,7 @@ namespace API3.Controllers
         public async Task<IActionResult> Post([FromBody]PostModel model)
         {
             UserAccount user = await _userManager.FindByNameAsync(this.User.Identity.Name);
+            
             try
             {
                 string nameOfImage = string.Empty;
@@ -81,7 +81,7 @@ namespace API3.Controllers
         [HttpDelete("DeletePost/{postid}")]
         public async Task<IActionResult> Delete(int postid)
         {
-            ApplicationLogin user = await _userManager.FindByNameAsync(this.User.Identity.Name);
+            UserAccount user = await _userManager.FindByNameAsync(this.User.Identity.Name);
 
             if (_context.Posts.FirstOrDefault(t => t.Id == postid).UserAccount_id == user.Id)
             {
