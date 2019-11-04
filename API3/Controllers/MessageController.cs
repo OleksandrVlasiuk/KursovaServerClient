@@ -40,14 +40,13 @@ namespace API3.Controllers
 
 
         // POST api/values
-
+        [Authorize]   
         [HttpPost("AddMessage")]
         public async Task<IActionResult> Post([FromBody]MessageModel model)
         {
             UserAccount user = await _userManager.FindByNameAsync(this.User.Identity.Name);
             Message message = new Message()
             {
-                Id = model.Id,
                 About = model.About,
                 UserAccount_id = user.Id
             };
@@ -76,6 +75,7 @@ namespace API3.Controllers
         }
 
         // DELETE api/values/5
+        [Authorize]
         [HttpDelete("DeleteMessage/{Messageid}")]
         public async Task<IActionResult> Delete(int Messageid)
         {

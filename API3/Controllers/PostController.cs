@@ -32,6 +32,7 @@ namespace API3.Controllers
         }
 
         // POST api/values
+        [Authorize]
         [HttpPost("AddPost")]
         public async Task<IActionResult> Post([FromBody]PostModel model)
         {
@@ -78,6 +79,7 @@ namespace API3.Controllers
         }
 
         // DELETE api/values/5
+        [Authorize]
         [HttpDelete("DeletePost/{postid}")]
         public async Task<IActionResult> Delete(int postid)
         {

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using vcn.Entities;
 
 namespace API3.Migrations
 {
     [DbContext(typeof(EFContext))]
-    partial class EFContextModelSnapshot : ModelSnapshot
+    [Migration("20191104180506_DescriptionIsNotRequired")]
+    partial class DescriptionIsNotRequired
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -230,11 +232,13 @@ namespace API3.Migrations
                     b.Property<string>("Description");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
 
-                    b.Property<string>("Image");
+                    b.Property<string>("Image")
+                        .IsRequired();
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -256,6 +260,9 @@ namespace API3.Migrations
                     b.Property<bool>("PhoneNumberConfirmed");
 
                     b.Property<string>("SecurityStamp");
+
+                    b.Property<string>("TelephoneNumber")
+                        .IsRequired();
 
                     b.Property<bool>("TwoFactorEnabled");
 

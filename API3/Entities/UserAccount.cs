@@ -14,13 +14,7 @@ namespace vcn.Entities
     {
         [Required]
         public string Name { get; set; }
-        [Required]
         public string Image { get; set; }
-        [Required,EmailAddress]
-        public string Email { get; set; }
-        [Required]
-        public string TelephoneNumber { get; set; }
-        [Required]
         public string Description { get; set; }
         public virtual ICollection<Friend>Friends { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
