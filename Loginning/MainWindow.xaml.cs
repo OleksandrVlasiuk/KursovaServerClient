@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Loginning.Pages;
+using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,19 @@ namespace Loginning
         public MainWindow()
         {
             InitializeComponent();
+            frame.Navigate(new Registration());
+
+        }
+
+        private void CANCEL_Click(object sender, RoutedEventArgs e)
+        {
+            Log.Text = null;
+            Pas.Text = null;
+        }
+
+        private void CloseProgram_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

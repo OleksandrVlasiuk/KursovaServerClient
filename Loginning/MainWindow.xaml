@@ -8,18 +8,25 @@
         mc:Ignorable="d" Height="600" Width="400" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen">
 
     <Grid Background="#FF44325F">
+        <Grid>
+            <materialDesign:PackIcon Kind="Close" Foreground="White" Height="36" Width="35" Margin="348,10,0,0"/>
+            <Button x:Name="Exit" Click="CloseProgram_Click" Content="Button" HorizontalAlignment="Left" Height="35" Margin="355,10,0,0" VerticalAlignment="Top" Width="28" RenderTransformOrigin="1.857,0.743" Background="{x:Null}" BorderBrush="{x:Null}"/>
+        </Grid>
+
         <StackPanel Margin="50">
             <Image Source="/Assets/LogInIcon3.png" Width="96" Height="96"/>
-            <Border Background="White" Margin="10 20" CornerRadius="5">
+            <Border Background="White" Margin="10 20" CornerRadius="5" Height="358">
                 <StackPanel Margin="25">
-                    <TextBox Text="{Binding Summoner}" Margin="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Login"/>
-                    <TextBox Text="{Binding Summoner}" Margin="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Password"/>
+                    <TextBox Name="Log" Text="{Binding Summoner}" Margin="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Login"/>
+                    <TextBox Name="Pas" Text="{Binding Summoner}" Margin="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Password"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <Button Margin="15 50" Content="CANCEL"/>
-                        <Button x:Name="ButtonSignUp" Margin="15 50" Content="SEARCH"/>
+                        <Button Margin="15 50" Click="CANCEL_Click" Content="CANCEL"/>
+                        <Button x:Name="ButtonSignUp" Margin="15 50" Content="OK" Width="84"/>
                     </StackPanel>
                 </StackPanel>
             </Border>
         </StackPanel>
+        <Frame NavigationUIVisibility="Hidden" x:Name="frame" Width="400" Height="600"  />
+
     </Grid>
 </Window>
