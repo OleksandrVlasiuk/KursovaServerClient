@@ -78,30 +78,28 @@ namespace API3.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody]LoginViewModel model)
         {
-            UserAccount user = await _userManager.FindByNameAsync(model.Login);
-            if (user != null)
+            try
             {
-                var result = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
-                if (!result.Succeeded)
+                UserAccount user = await _userManager.FindByNameAsync(model.Login);
+                if (user != null)
                 {
-                    return BadRequest("Bad data");
-                }
-                List<Claim> claims = new List<Claim>()
+                    var result = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
+                    if (!result.Succeeded)
+                    {
+                        return BadRequest("Bad data");
+                    }
+                    List<Claim> claims = new List<Claim>()
                 {
                     new Claim(ClaimTypes.Name,user.UserName),
                 };
-                //foreach (var item in await _userManager.GetRolesAsync(user))
-                //{
-                //    claims.Add(new Claim(ClaimTypes.Role, item));
-                //}
 
-                //var writer = new StreamWriter(System.IO.File.OpenWrite(@"ForTokens.txt"));
-                //writer.WriteLine($"Bearer {_tokenService.GenerateAccessToken(claims)}");
-                //writer.Close();
-
-                return Ok(_tokenService.GenerateAccessToken(claims));
+                    return Ok(_tokenService.GenerateAccessToken(claims));
+                }
+                return BadRequest("Bad password or login");
             }
-            return BadRequest("Bad password or login");
+            catch (Exception ex) {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPost("register")]

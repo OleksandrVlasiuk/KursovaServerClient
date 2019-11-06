@@ -1,4 +1,4 @@
-﻿<Window x:Class="Loginning.MainWindow"
+﻿<Window x:Class="Loginning.LoginWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -18,10 +18,10 @@
             <Border Background="White" Margin="10 20" CornerRadius="5" Height="358">
                 <StackPanel Margin="25">
                     <TextBox Name="Log" Text="{Binding Summoner}" Margin="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Login"/>
-                    <TextBox Name="Pas" Text="{Binding Summoner}" Margin="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Password"/>
+                    <PasswordBox Name="Pas" PasswordChar="*" Margin="15"   Style="{StaticResource MaterialDesignPasswordBox}" materialDesign:HintAssist.Hint="Password"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Button Margin="15 50" Click="CANCEL_Click" Content="CANCEL"/>
-                        <Button x:Name="ButtonSignUp" Margin="15 50" Content="OK" Width="84"/>
+                        <Button x:Name="ButtonSignUp" Margin="15 50" Click="ButtonSignUp_Click" Content="OK" Width="84"/>
                     </StackPanel>
                 </StackPanel>
             </Border>

@@ -41,6 +41,10 @@
     <Reference Include="MaterialDesignThemes.Wpf, Version=2.6.0.325, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.2.6.0\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files\dotnet\sdk\NuGetFallbackFolder\newtonsoft.json\11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -83,6 +87,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\AddAccountViewModel.cs" />
+    <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Pages\Creating.xaml.cs">
       <DependentUpon>Creating.xaml</DependentUpon>
     </Compile>
@@ -147,6 +153,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Kursova\Kursova.csproj">
+      <Project>{0C8A3B5C-57F6-4773-9B67-361DB0C41DFC}</Project>
+      <Name>Kursova</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
