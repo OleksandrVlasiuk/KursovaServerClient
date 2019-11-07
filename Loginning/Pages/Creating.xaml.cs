@@ -53,10 +53,16 @@ namespace Loginning.Pages
                 {
                     Writer.Write(JsonConvert.SerializeObject(info));
                 }
+
+                WebResponse response = httpWebRequest.GetResponse();
+
                 Title.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF1A8733"));
                 Title.Text = "Successfully";
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            catch (Exception ex) {
+                Title.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFB20920"));
+                Title.Text = "Bad data";
+                MessageBox.Show(ex.InnerException.Message); }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

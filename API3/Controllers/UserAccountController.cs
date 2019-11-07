@@ -89,9 +89,9 @@ namespace API3.Controllers
                         return BadRequest("Bad data");
                     }
                     List<Claim> claims = new List<Claim>()
-                {
-                    new Claim(ClaimTypes.Name,user.UserName),
-                };
+                    {
+                        new Claim(ClaimTypes.Name,user.UserName),
+                    };
 
                     return Ok(_tokenService.GenerateAccessToken(claims));
                 }
@@ -117,7 +117,7 @@ namespace API3.Controllers
             {
                 return Ok();
             }
-            return BadRequest("Неправильно введені дані");
+            return BadRequest("Bad request(FromRegistr)");
         }
 
         // PUT: api/category/edit/5

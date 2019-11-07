@@ -60,6 +60,7 @@ namespace API3.Controllers
                 {
                     Id = model.Id,
                     File = nameOfImage,
+                    MyComment = model.MyComment,
                     Likes = model.Likes,
                     UserAccount_id = model.UserAccount_id
                 };

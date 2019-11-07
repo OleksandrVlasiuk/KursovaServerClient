@@ -33,7 +33,7 @@
                         <ImageBrush ImageSource="Assets/ForAcc1.jpg" Stretch="UniformToFill"/>
                     </Ellipse.Fill>
                 </Ellipse>
-                <Button HorizontalAlignment="Center" Margin="10" Content="Edit Profile" Background="{x:Null}" BorderBrush="White"/>
+                <Button HorizontalAlignment="Center" Margin="10" Content="Edit Profile" Background="{x:Null}" BorderBrush="White" Click="Button_Click"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="10 110">
@@ -112,6 +112,7 @@
             <ScrollViewer Height="340">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        
                         <Image Width="200" Height="200" Margin="20" Source="Assets/TestIcon2.png" Stretch="UniformToFill"/>
                         <Image Width="200" Height="200" Margin="20" Source="Assets/TestIcon2.png" Stretch="UniformToFill"/>
                         <Image Width="200" Height="200" Margin="20" Source="Assets/TestIcon2.png" Stretch="UniformToFill"/>

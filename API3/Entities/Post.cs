@@ -14,6 +14,7 @@ namespace vcn.Entities
         public int Id { get; set; }
         [Required]
         public string File { get; set; }
+        public string MyComment { get; set; }
         [Required]
         public int Likes { get; set; }
         [ForeignKey("UserAccountOf")]
