@@ -79,20 +79,22 @@ namespace API3.Controllers
             }
         }
 
-        // GET
-        //[Authorize]
-        //[HttpGet("get")]
-        //public async Task<IActionResult> GetProducts()
-        //{
-        //    UserAccount user = await _userManager.FindByNameAsync(this.User.Identity.Name);
-        //    var posts = _context.Posts.Select(t =>new PostViewModel()
-        //    {
-        //        Image = t.Image,
-        //        Name = t.Name
-        //    }).ToList();
-        //    return Ok(posts);
-        //}
-        // DELETE api/values/5
+        //GET
+       [Authorize]
+       [HttpGet("get")]
+        public async Task<IActionResult> GetProducts()
+        {
+            UserAccount user = await _userManager.FindByNameAsync(this.User.Identity.Name);
+            var posts = _context.Posts.Where(t=>t.UserAccount_id == user.Id).Select(t => new PostModel()
+            {
+                File = t.File,
+                Likes = t.Likes,
+                MyComment = t.MyComment,
+                UserAccount_id = t.UserAccount_id
+            }).ToList();
+            return Ok(posts);
+        }
+        //DELETE api/values/5
         [Authorize]
         [HttpDelete("DeletePost/{postid}")]
         public async Task<IActionResult> Delete(int postid)

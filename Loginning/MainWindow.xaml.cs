@@ -74,7 +74,7 @@ namespace Loginning
                     writer.WriteLine($"{token}");
                     writer.Close();
 
-                    MainWindow win2 = new MainWindow();
+                    EditWindow win2 = new EditWindow();
                     win2.Show();
                     this.Close();
                 }

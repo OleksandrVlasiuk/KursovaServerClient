@@ -69,7 +69,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\MainWindow.xaml">
+    <Page Include="Pages\EditWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -80,8 +80,15 @@
     <Compile Include="MainMainWindow.xaml.cs">
       <DependentUpon>MainMainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\AddAccountViewModel.cs" />
+    <Compile Include="Models\CommentModel.cs" />
+    <Compile Include="Models\editInnerAccountViewModel.cs" />
+    <Compile Include="Models\FriendModel.cs" />
+    <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\MessageModel.cs" />
+    <Compile Include="Models\PostModel.cs" />
     <Compile Include="Pages\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <DependentUpon>EditWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -113,7 +120,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\ForAcc1.jpg" />
+    <Resource Include="Assets\ForAcc1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\ForAcc3.jpg" />
     <Resource Include="Assets\ForAcc4.jpg" />
     <Resource Include="Assets\ForAcc5.jpg" />

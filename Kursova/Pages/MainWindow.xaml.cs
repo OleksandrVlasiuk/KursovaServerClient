@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using API3.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,27 +22,65 @@ namespace Kursova
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class EditWindow : Window
     {
-        public MainWindow()
+        public EditWindow()
         {
             InitializeComponent();
-            try {
-                HttpWebRequest httpWebRequest = WebRequest.CreateHttp("https://localhost:44395/api/UserAccount/register");
-                httpWebRequest.Method = "POST";
-                httpWebRequest.ContentType = "application/json";
-                using (StreamWriter Writer = new StreamWriter(httpWebRequest.GetRequestStream()))
+            try
+            {
+                string token;
+                using (StreamReader Writer = new StreamReader("../../../Loginning/ForTokens.txt"))
                 {
-                    Writer.Write(JsonConvert.SerializeObject(info));
+                    token = Writer.ReadLine();
                 }
+                HttpWebRequest httpWebRequest = WebRequest.CreateHttp("https://localhost:44396/api/post/get");
+                httpWebRequest.Method = "GET";
+                httpWebRequest.ContentType = "application/json";
+                httpWebRequest.Headers.Add(HttpRequestHeader.Authorization, $"Bearer {token}");
 
                 WebResponse response = httpWebRequest.GetResponse();
+                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                {
+                    string json = reader.ReadToEnd();
+                    List<PostModel> list = JsonConvert.DeserializeObject<List<PostModel>>(json);
+                    foreach (var item in list)
+                    {
+                        item.File = "https://localhost:44396/api/content/ProductImages/" + item.File;
+                    }
+                    AllPosts.ItemsSource = list;
+                }
+                //////////////////////////////////////////////
+                editInnerAccountViewModel MyInfo = new editInnerAccountViewModel();
+                HttpWebRequest httpWebRequest2 = WebRequest.CreateHttp("https://localhost:44396/api/UserAccount/OutputAccount");
+                httpWebRequest2.Method = "GET";
+                httpWebRequest2.ContentType = "application/json";
+                httpWebRequest2.Headers.Add(HttpRequestHeader.Authorization, $"Bearer {token}");
+                WebResponse response2 = httpWebRequest2.GetResponse();
+                using (StreamReader reader = new StreamReader(response2.GetResponseStream()))
+                {
+                    string json = reader.ReadToEnd();
+                    MyInfo = JsonConvert.DeserializeObject<editInnerAccountViewModel>(json);
+                }
+                MainName.DataContext = MyInfo;
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message); }
+            //try {
+            //    HttpWebRequest httpWebRequest = WebRequest.CreateHttp("https://localhost:44395/api/UserAccount/register");
+            //    httpWebRequest.Method = "POST";
+            //    httpWebRequest.ContentType = "application/json";
+            //    using (StreamWriter Writer = new StreamWriter(httpWebRequest.GetRequestStream()))
+            //    {
+            //        Writer.Write(JsonConvert.SerializeObject(info));
+            //    }
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.InnerException.Message);
-            }
+            //    WebResponse response = httpWebRequest.GetResponse();
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.InnerException.Message);
+            //}
 
         }
 

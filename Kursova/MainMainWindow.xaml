@@ -60,7 +60,7 @@
         </StackPanel>
         <ScrollViewer Margin="0,227,0,40">
             <StackPanel Width="790">
-                <ListView HorizontalAlignment="Left" Height="296" Margin="35,35,0,35"  VerticalAlignment="Top" Width="710" x:Name="DataGridProducts" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Foreground="White" Background="#FF2E2E2E" BorderBrush="{x:Null}">
+                <ListView HorizontalAlignment="Left" Height="296" Margin="35,35,0,35"  VerticalAlignment="Top" Width="710" x:Name="AllPosts" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Foreground="White" Background="#FF2E2E2E" BorderBrush="{x:Null}">
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel  Width="{Binding ActualWidth, ElementName=lvItems}"/>
