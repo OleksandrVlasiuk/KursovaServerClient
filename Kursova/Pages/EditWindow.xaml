@@ -1,112 +1,121 @@
-﻿<Window x:Class="Kursova.EditWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:local="clr-namespace:Kursova"
-        mc:Ignorable="d" Height="600" Width="1000" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
-    <Grid Background="#FF44325F">
-        <Grid Height="100" VerticalAlignment="Top" Background="White">
-            <Image HorizontalAlignment="Left" Margin="10 0"/>
-            <TextBlock Text="Get to know your friends " Margin="10" FontSize="14" Foreground="#FF2A6088" HorizontalAlignment="Center"/>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <StackPanel VerticalAlignment="Bottom">
-                    <TextBlock Text="FOLLOWERS" Margin="10 0" FontSize="16" FontWeight="Bold" Foreground="#FF2A6088" />
-                    <TextBlock Text="2K" HorizontalAlignment="Center" Margin="5 0 5 5" FontSize="16" Foreground="#FF2A6088"/>
+﻿<Page x:Class="Kursova.Pages.EditWindow2"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Kursova.Pages"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="1000"
+      Title="EditWindow2">
+
+    <Grid>
+        <Grid Background="#FF44325F">
+            <Grid Height="100" VerticalAlignment="Top" Background="White">
+                <Image HorizontalAlignment="Left" Margin="10 0"/>
+                <TextBlock Text="Get to know your friends " Margin="10" FontSize="14" Foreground="#FF2A6088" HorizontalAlignment="Center"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <StackPanel VerticalAlignment="Bottom">
+                        <TextBlock Text="FOLLOWERS" Margin="10 0" FontSize="16" FontWeight="Bold" Foreground="#FF2A6088" />
+                        <TextBlock Text="2K" HorizontalAlignment="Center" Margin="5 0 5 5" FontSize="16" Foreground="#FF2A6088"/>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Bottom">
+                        <TextBlock Text="FOLLOWING" Margin="10 0" FontSize="16" FontWeight="Bold" Foreground="#FF2A6088"/>
+                        <TextBlock Text="957" HorizontalAlignment="Center" Margin="5 0 5 5" FontSize="16" Foreground="#FF2A6088"/>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Bottom">
+                        <TextBlock Text="POSTS" Margin="10 0" FontSize="16" FontWeight="Bold" Foreground="#FF2A6088"/>
+                        <TextBlock Text="145" HorizontalAlignment="Center" Margin="5 0 5 5" FontSize="16" Foreground="#FF2A6088"/>
+                    </StackPanel>
                 </StackPanel>
-                <StackPanel VerticalAlignment="Bottom">
-                    <TextBlock Text="FOLLOWING" Margin="10 0" FontSize="16" FontWeight="Bold" Foreground="#FF2A6088"/>
-                    <TextBlock Text="957" HorizontalAlignment="Center" Margin="5 0 5 5" FontSize="16" Foreground="#FF2A6088"/>
+            </Grid>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,65,10,0" >
+                <TextBlock Name="MainName" FontFamily="Nirmala UI" Text="{Binding Name}" FontSize="30" Margin="20" VerticalAlignment="Center" Foreground="White"/>
+                <StackPanel HorizontalAlignment="Right">
+                    <Ellipse Height="150" Width="150" Stroke="White" StrokeThickness="3">
+                        <Ellipse.Fill>
+                            <ImageBrush Stretch="UniformToFill"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+
                 </StackPanel>
-                <StackPanel VerticalAlignment="Bottom">
-                    <TextBlock Text="POSTS" Margin="10 0" FontSize="16" FontWeight="Bold" Foreground="#FF2A6088"/>
-                    <TextBlock Text="145" HorizontalAlignment="Center" Margin="5 0 5 5" FontSize="16" Foreground="#FF2A6088"/>
-                </StackPanel>
+            </StackPanel>
+
+            <ListView HorizontalAlignment="Right" Margin="0 220 0 0" Height="380" VerticalAlignment="Top">
+                <ListViewItem Height="50" Width="260">
+                    <Grid Height="30" Width="250">
+                        <TextBlock Width="75" HorizontalAlignment="Left" Text="New name : " FontSize="10" TextWrapping="Wrap"/>
+                        <TextBox Width="100"/>
+                        <Button HorizontalAlignment="Right" Content="OK" FontSize="10" Margin="10 0" Height="20" Padding="10 0"/>
+                    </Grid>
+                </ListViewItem>
+                <ListViewItem Height="50" Width="260">
+                    <Grid Height="30" Width="250">
+                        <TextBlock Width="70" HorizontalAlignment="Left" Text="New email : " FontSize="10" TextWrapping="Wrap"/>
+                        <TextBox Margin="75,0,49,0"/>
+                        <Button HorizontalAlignment="Right" Content="OK" FontSize="10" Margin="10 0" Height="20" Padding="10 0"/>
+                    </Grid>
+                </ListViewItem>
+                <ListViewItem Height="50" Width="260">
+                    <Grid Height="30" Width="250">
+                        <TextBlock  Width="100" HorizontalAlignment="Left"   Text="New phone number : " FontSize="10" TextWrapping="Wrap"/>
+                        <TextBox Margin="100,0,49,0"/>
+                        <Button HorizontalAlignment="Right" Content="OK" FontSize="10" Margin="10 0" Height="20" Padding="10 0"/>
+                    </Grid>
+                </ListViewItem>
+                <ListViewItem Height="50" Width="260">
+                    <Grid Height="30" Width="250">
+                        <TextBlock Width="75" HorizontalAlignment="Left"  Text="New password :" FontSize="10" TextWrapping="Wrap"/>
+                        <TextBox Width="100"/>
+                        <Button HorizontalAlignment="Right" Content="OK" FontSize="10" Margin="10 0" Height="20" Padding="10 0"/>
+                    </Grid>
+                </ListViewItem>
+                <ListViewItem Height="50" Width="260">
+                    <Grid Height="30" Width="250">
+                        <TextBlock Width="75" HorizontalAlignment="Left"  Text="Add new post :" FontSize="10" TextWrapping="Wrap"/>
+                        <TextBox Width="100"/>
+                        <Button HorizontalAlignment="Right" Content="..." FontSize="10" Margin="10 0" Height="20" Padding="10 0" Background="#FF0B528B"/>
+
+                    </Grid>
+                </ListViewItem>
+                <ListViewItem Height="50" Width="260">
+                    <Grid Height="75" Width="250">
+                        <Image Margin="0,0,2,0" RenderTransformOrigin="0.5,0.5" Height="65"  VerticalAlignment="Top" />
+                    </Grid>
+                </ListViewItem>
+                <ListViewItem Height="75" Width="260">
+                    <Grid Height="75" Width="250">
+                        <Button Margin="10,39,10,0" RenderTransformOrigin="0.5,0.5" Content="Create" Height="26"  VerticalAlignment="Top" />
+                    </Grid>
+                </ListViewItem>
+            </ListView>
+
+            <StackPanel Margin="0 150 300 0">
+                <ScrollViewer Height="340" Margin="0,0,-27,0">
+                    <StackPanel>
+                        <ListView HorizontalAlignment="Left" Height="296"  VerticalAlignment="Top" Width="527" x:Name="AllPosts" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Foreground="White" Background="#FF2E2E2E" BorderBrush="{x:Null}">
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel  Width="{Binding ActualWidth, ElementName=list}"/>
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Background="Transparent">
+                                        <Image Width="200" Height="200"
+                       Source="{Binding File}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+                </ScrollViewer>
             </StackPanel>
         </Grid>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,65,10,0" >
-            <TextBlock Name="MainName" FontFamily="Nirmala UI" Text="{Binding Name}" FontSize="30" Margin="20" VerticalAlignment="Center" Foreground="White"/>
-            <StackPanel HorizontalAlignment="Right">
-                <Ellipse Height="150" Width="150" Stroke="White" StrokeThickness="3">
-                    <Ellipse.Fill>
-                        <ImageBrush Stretch="UniformToFill"/>
-                    </Ellipse.Fill>
-                </Ellipse>
 
-            </StackPanel>
-        </StackPanel>
-
-        <ListView HorizontalAlignment="Right" Margin="0 220 0 0" Height="380" VerticalAlignment="Top">
-            <ListViewItem Height="50" Width="260">
-                <Grid Height="30" Width="250">
-                    <TextBlock Width="75" HorizontalAlignment="Left" Text="New name : " FontSize="10" TextWrapping="Wrap"/>
-                    <TextBox Width="100"/>
-                    <Button HorizontalAlignment="Right" Content="OK" FontSize="10" Margin="10 0" Height="20" Padding="10 0"/>
-                </Grid>
-            </ListViewItem>
-            <ListViewItem Height="50" Width="260">
-                <Grid Height="30" Width="250">
-                    <TextBlock Width="70" HorizontalAlignment="Left" Text="New email : " FontSize="10" TextWrapping="Wrap"/>
-                    <TextBox Margin="75,0,49,0"/>
-                    <Button HorizontalAlignment="Right" Content="OK" FontSize="10" Margin="10 0" Height="20" Padding="10 0"/>
-                </Grid>
-            </ListViewItem>
-            <ListViewItem Height="50" Width="260">
-                <Grid Height="30" Width="250">
-                    <TextBlock  Width="100" HorizontalAlignment="Left"   Text="New phone number : " FontSize="10" TextWrapping="Wrap"/>
-                    <TextBox Margin="100,0,49,0"/>
-                    <Button HorizontalAlignment="Right" Content="OK" FontSize="10" Margin="10 0" Height="20" Padding="10 0"/>
-                </Grid>
-            </ListViewItem>
-            <ListViewItem Height="50" Width="260">
-                <Grid Height="30" Width="250">
-                    <TextBlock Width="75" HorizontalAlignment="Left"  Text="New password :" FontSize="10" TextWrapping="Wrap"/>
-                    <TextBox Width="100"/>
-                    <Button HorizontalAlignment="Right" Content="OK" FontSize="10" Margin="10 0" Height="20" Padding="10 0"/>
-                </Grid>
-            </ListViewItem>
-            <ListViewItem Height="50" Width="260">
-                <Grid Height="30" Width="250">
-                    <TextBlock Width="75" HorizontalAlignment="Left"  Text="Add new post :" FontSize="10" TextWrapping="Wrap"/>
-                    <TextBox Width="100"/>
-                    <Button HorizontalAlignment="Right" Content="..." FontSize="10" Margin="10 0" Height="20" Padding="10 0" Background="#FF0B528B"/>
-
-                </Grid>
-            </ListViewItem>
-            <ListViewItem Height="50" Width="260">
-                <Grid Height="75" Width="250">
-                    <Image Margin="0,0,2,0" RenderTransformOrigin="0.5,0.5" Height="65"  VerticalAlignment="Top" />
-                </Grid>
-            </ListViewItem>
-            <ListViewItem Height="75" Width="260">
-                <Grid Height="75" Width="250">
-                    <Button Margin="10,39,10,0" RenderTransformOrigin="0.5,0.5" Content="Create" Height="26"  VerticalAlignment="Top" />
-                </Grid>
-            </ListViewItem>
-        </ListView>
-
-        <StackPanel Margin="0 150 300 0">
-            <ScrollViewer Height="340" Margin="0,0,-27,0">
-                <StackPanel>
-                      <ListView HorizontalAlignment="Left" Height="296"  VerticalAlignment="Top" Width="710" x:Name="AllPosts" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Foreground="White" Background="#FF2E2E2E" BorderBrush="{x:Null}">
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel  Width="{Binding ActualWidth, ElementName=list}"/>
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Background="Transparent">
-                                <Image Width="200" Height="200"
-                       Source="{Binding File}" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                </StackPanel>
-            </ScrollViewer>
-        </StackPanel>
+        <Grid>
+            <materialDesign:PackIcon Kind="ArrowBack" Foreground="Purple" Height="36" Width="Auto" Margin="10,10,955,0" HorizontalAlignment="Stretch"/>
+            <Button x:Name="Exit" Click="CloseProgram_Click" Content="Button" HorizontalAlignment="Left" Height="35" Margin="355,10,0,0" VerticalAlignment="Top" Width="28" RenderTransformOrigin="1.857,0.743" Background="{x:Null}" BorderBrush="{x:Null}"/>
+        </Grid>
     </Grid>
-
-</Window>
+</Page>

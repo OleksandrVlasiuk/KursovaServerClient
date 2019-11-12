@@ -17,14 +17,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Kursova
+namespace Kursova.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for EditWindow2.xaml
     /// </summary>
-    public partial class EditWindow : Window
+    public partial class EditWindow2 : Page
     {
-        public EditWindow()
+        public EditWindow2()
         {
             InitializeComponent();
             try
@@ -81,12 +81,11 @@ namespace Kursova
             //{
             //    MessageBox.Show(ex.InnerException.Message);
             //}
-
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void CloseProgram_Click(object sender, RoutedEventArgs e)
         {
-
+            this.NavigationService.GoBack();
         }
     }
 }

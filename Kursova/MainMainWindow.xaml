@@ -25,42 +25,32 @@
                         <ImageBrush ImageSource="Assets/ForAcc1.jpg" Stretch="UniformToFill"/>
                     </Ellipse.Fill>
                 </Ellipse>
-                <Button HorizontalAlignment="Center" Margin="10" Content="Edit Profile" Background="{x:Null}" BorderBrush="White" Click="Button_Click"/>
-            </StackPanel>
+                </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="10 110">
             <TextBox Width="150" materialDesign:HintAssist.Hint="SEARCH" Foreground="White"/>
             <materialDesign:PackIcon Kind="AccountSearch" Foreground="White" VerticalAlignment="Center"/>
         </StackPanel>
-        <ListView HorizontalAlignment="Right" Margin="0 220 0 0"/>
-        <StackPanel Margin="0 150 300 0">
-            <StackPanel Orientation="Horizontal" Margin="10">
-                <Ellipse Height="70" Width="70" Margin="10" Stroke="White" StrokeThickness="3">
-                    <Ellipse.Fill>
-                        <ImageBrush ImageSource="Assets/ForAcc3.jpg" Stretch="UniformToFill"/>
-                    </Ellipse.Fill>
-                </Ellipse>
-                <Ellipse Height="70" Width="70" Margin="10" Stroke="White" StrokeThickness="3">
-                    <Ellipse.Fill>
-                        <ImageBrush ImageSource="Assets/TestIcon2.png" Stretch="UniformToFill"/>
-                    </Ellipse.Fill>
-                </Ellipse>
-                <Ellipse Height="70" Width="70" Margin="10" Stroke="White" StrokeThickness="3">
-                    <Ellipse.Fill>
-                        <ImageBrush ImageSource="Assets/TestIcon2.png" Stretch="UniformToFill"/>
-                    </Ellipse.Fill>
-                </Ellipse>
-                <Ellipse Height="70" Width="70" Margin="10" Stroke="White" StrokeThickness="3">
-                    <Ellipse.Fill>
-                        <ImageBrush ImageSource="Assets/TestIcon2.png" Stretch="UniformToFill"/>
-                    </Ellipse.Fill>
-                </Ellipse>
-            </StackPanel>
+        <ListView Height="72" Width="596" Margin="10,150,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"  x:Name="AllPosts" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Foreground="White" Background="#FF2E2E2E" BorderBrush="{x:Null}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel  Width="{Binding ActualWidth, ElementName=lvItems}"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Ellipse Height="70" Width="70" Margin="10" Stroke="White" StrokeThickness="3">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="{Binding File}" Stretch="UniformToFill"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
-        </StackPanel>
         <ScrollViewer Margin="0,227,0,40">
             <StackPanel Width="790">
-                <ListView HorizontalAlignment="Left" Height="296" Margin="35,35,0,35"  VerticalAlignment="Top" Width="710" x:Name="AllPosts" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Foreground="White" Background="#FF2E2E2E" BorderBrush="{x:Null}">
+                <ListView HorizontalAlignment="Left" Height="296" Margin="35,35,0,35"  VerticalAlignment="Top" Width="710" x:Name="AllFriends" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Foreground="White" Background="#FF2E2E2E" BorderBrush="{x:Null}">
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel  Width="{Binding ActualWidth, ElementName=lvItems}"/>
@@ -82,5 +72,8 @@
                 </ListView>
             </StackPanel>
         </ScrollViewer>
+
+        <Frame NavigationUIVisibility="Hidden" x:Name="frame"  />
     </Grid>
+
 </Window>

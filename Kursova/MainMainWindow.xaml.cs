@@ -1,4 +1,6 @@
 ﻿using API3.Models;
+using Kursova.Pages;
+using Loginning.Pages;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -26,6 +28,7 @@ namespace Kursova
         public MainMainWindow()
         {
             InitializeComponent();
+            frame.Navigate(new EditButton());
             try
             {
                 string token;
@@ -56,7 +59,6 @@ namespace Kursova
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
         }
     }
 }
