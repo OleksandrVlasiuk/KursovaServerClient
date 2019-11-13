@@ -26,7 +26,7 @@ namespace Kursova
 
         private void CloseProgram_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
     }
 }

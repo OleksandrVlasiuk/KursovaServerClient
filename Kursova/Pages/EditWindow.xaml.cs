@@ -29,6 +29,7 @@ namespace Kursova.Pages
             InitializeComponent();
             try
             {
+                List<PostModel> list;
                 string token;
                 using (StreamReader Writer = new StreamReader("../../../Loginning/ForTokens.txt"))
                 {
@@ -43,13 +44,14 @@ namespace Kursova.Pages
                 using (StreamReader reader = new StreamReader(response.GetResponseStream()))
                 {
                     string json = reader.ReadToEnd();
-                    List<PostModel> list = JsonConvert.DeserializeObject<List<PostModel>>(json);
+                    list = JsonConvert.DeserializeObject<List<PostModel>>(json);
                     foreach (var item in list)
                     {
                         item.File = "https://localhost:44396/api/content/ProductImages/" + item.File;
                     }
-                    AllPosts.ItemsSource = list;
+                    
                 }
+                AllPosts.ItemsSource = list;
                 //////////////////////////////////////////////
                 editInnerAccountViewModel MyInfo = new editInnerAccountViewModel();
                 HttpWebRequest httpWebRequest2 = WebRequest.CreateHttp("https://localhost:44396/api/UserAccount/OutputAccount");
@@ -62,25 +64,16 @@ namespace Kursova.Pages
                     string json = reader.ReadToEnd();
                     MyInfo = JsonConvert.DeserializeObject<editInnerAccountViewModel>(json);
                 }
-                MainName.DataContext = MyInfo;
+                MainName.Text = MyInfo.Login;
+                MyIcon.DataContext = MyInfo.Image;
+                em.Text = MyInfo.Email;
+                pa.Text = "*******";
+                ph.Text = MyInfo.PhoneNumber;
+                na.Text = MyInfo.Name;
+
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
-            //try {
-            //    HttpWebRequest httpWebRequest = WebRequest.CreateHttp("https://localhost:44395/api/UserAccount/register");
-            //    httpWebRequest.Method = "POST";
-            //    httpWebRequest.ContentType = "application/json";
-            //    using (StreamWriter Writer = new StreamWriter(httpWebRequest.GetRequestStream()))
-            //    {
-            //        Writer.Write(JsonConvert.SerializeObject(info));
-            //    }
-
-            //    WebResponse response = httpWebRequest.GetResponse();
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.InnerException.Message);
-            //}
+            
         }
 
         private void CloseProgram_Click(object sender, RoutedEventArgs e)

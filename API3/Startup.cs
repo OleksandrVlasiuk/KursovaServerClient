@@ -59,7 +59,6 @@ namespace API3
                 };
             });
             services.AddTransient(typeof(ITokenService), typeof(TokenService));
-            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -83,14 +82,7 @@ namespace API3
             app.UseHttpsRedirection();
             app.UseMvc();
 
-            app.UseHttpsRedirection();
-            app.UseMvc();
 
-            app.UseSignalR(routes =>
-            {
-                routes.MapHub<ChatHub>("/chat");
-                }
-            );
         }
     }
 }

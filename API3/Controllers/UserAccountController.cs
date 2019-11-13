@@ -49,6 +49,19 @@ namespace API3.Controllers
             _tokenService = tokenService;
         }
 
+        [HttpGet("getIcons")]
+        public ContentResult GetFriendIcons(List<string>fr)
+        {
+            List<UserAccount> users = new List<UserAccount>();
+            foreach (var t in fr)
+            {
+               users.Add( _context.Users.FirstOrDefault(f=>f.Id==t));
+            }
+            string json = JsonConvert.SerializeObject(users);
+            return Content(json, "application/json");
+
+        }
+
         [Authorize]
         [HttpGet("OutputAccount")]
         public async Task<IActionResult> GetAccount()
