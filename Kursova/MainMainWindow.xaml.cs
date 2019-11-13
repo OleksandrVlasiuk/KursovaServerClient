@@ -69,7 +69,7 @@ namespace Kursova
                     friendModels = JsonConvert.DeserializeObject<List<FriendModel>>(json);
                     foreach (var item in friendModels)
                     {
-                        fri.Add();
+                        //fri.Add();
                     }
 
                 }
@@ -93,29 +93,29 @@ namespace Kursova
                     fr.Add(t.UserAccount_id);
                 }
 
-                HttpWebRequest httpWebRequest3 = WebRequest.CreateHttp("https://localhost:44396/api/UserAccount/getIcons");
-                httpWebRequest3.Method = "GET";
-                httpWebRequest3.ContentType = "application/json";
-                httpWebRequest3.Headers.Add(HttpRequestHeader.Authorization, $"Bearer {token}");
+                //HttpWebRequest httpWebRequest3 = WebRequest.CreateHttp("https://localhost:44396/api/UserAccount/getIcons");
+                //httpWebRequest3.Method = "GET";
+                //httpWebRequest3.ContentType = "application/json";
+                //httpWebRequest3.Headers.Add(HttpRequestHeader.Authorization, $"Bearer {token}");
                 
-                using (StreamWriter Writer = new StreamWriter(httpWebRequest.GetRequestStream()))
-                {
-                    Writer.Write(JsonConvert.SerializeObject(fr));
-                }
+                //using (StreamWriter Writer = new StreamWriter(httpWebRequest.GetRequestStream()))
+                //{
+                //    Writer.Write(JsonConvert.SerializeObject(fr));
+                //}
 
-                WebResponse response3 = httpWebRequest2.GetResponse();
+                //WebResponse response3 = httpWebRequest2.GetResponse();
 
-                using (StreamReader reader = new StreamReader(response3.GetResponseStream()))
-                {
-                    string json = reader.ReadToEnd();
-                    List<editInnerAccountViewModel> list = JsonConvert.DeserializeObject<List<editInnerAccountViewModel>>(json);
-                    foreach (var item in list)
-                    {
+                //using (StreamReader reader = new StreamReader(response3.GetResponseStream()))
+                //{
+                //    string json = reader.ReadToEnd();
+                //    List<editInnerAccountViewModel> list = JsonConvert.DeserializeObject<List<editInnerAccountViewModel>>(json);
+                //    foreach (var item in list)
+                //    {
 
-                        item.Image = "https://localhost:44396/api/content/ProductImages/" + item.Image;
-                    }
-                    AllPosts.ItemsSource = list;
-                }
+                //        item.Image = "https://localhost:44396/api/content/ProductImages/" + item.Image;
+                //    }
+                //    AllPosts.ItemsSource = list;
+                //}
 
 
             }
