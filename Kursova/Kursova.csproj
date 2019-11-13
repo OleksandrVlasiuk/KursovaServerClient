@@ -211,6 +211,7 @@
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\MessageModel.cs" />
     <Compile Include="Models\PostModel.cs" />
+    <Compile Include="Models\UserAccountModel.cs" />
     <Compile Include="Pages\Creating.xaml.cs">
       <DependentUpon>Creating.xaml</DependentUpon>
     </Compile>

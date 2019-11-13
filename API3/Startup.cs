@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using API3.Hubs;
 using JwtExampleIdentity.Abstract;
 using JwtExampleIdentity.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -54,8 +53,8 @@ namespace API3
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("secret-key-example")),
                     ValidateAudience = false,
                     ValidateIssuer = false,
-                    ValidateLifetime = false,
-                    ValidateIssuerSigningKey = false
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true
                 };
             });
             services.AddTransient(typeof(ITokenService), typeof(TokenService));
@@ -78,6 +77,8 @@ namespace API3
                  Path.Combine(Directory.GetCurrentDirectory(), @"Content")),
                 RequestPath = "/api/content"
             });
+
+            app.UseAuthentication();
 
             app.UseHttpsRedirection();
             app.UseMvc();

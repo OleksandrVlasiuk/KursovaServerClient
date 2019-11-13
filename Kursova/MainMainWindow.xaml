@@ -8,7 +8,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="MainMainWindow" Height="540.698" Width="800">
     <Grid Background="#FF44325F">
-        <Frame NavigationUIVisibility="Hidden" x:Name="frame"  />
+       
         <Grid Height="100" VerticalAlignment="Top" Background="White">
             <Image Source="Assets/TestIcon2.png" HorizontalAlignment="Left" Margin="10 0"/>
             <TextBlock Text="Find new friends " Margin="316,38,319,38" FontSize="14" Foreground="#FF2A6088" HorizontalAlignment="Center"/>
@@ -32,10 +32,10 @@
             <TextBox Width="150" materialDesign:HintAssist.Hint="SEARCH" Foreground="White"/>
             <materialDesign:PackIcon Kind="AccountSearch" Foreground="White" VerticalAlignment="Center"/>
         </StackPanel>
-        <ListView Height="72" Width="596" Margin="10,150,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"  x:Name="AllPosts" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Foreground="White" Background="#FF2E2E2E" BorderBrush="{x:Null}">
+        <ListView Name="FriendIcons" Height="72" Width="596" Margin="10,150,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"  ScrollViewer.HorizontalScrollBarVisibility="Hidden" Foreground="White" Background="#FF2E2E2E" BorderBrush="{x:Null}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel  Width="{Binding ActualWidth, ElementName=lvItems}"/>
+                    <WrapPanel  Width="{Binding ActualWidth, ElementName=lv}"/>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
@@ -51,7 +51,7 @@
 
         <ScrollViewer Margin="0,227,0,10">
             <StackPanel Width="790">
-                <ListView HorizontalAlignment="Left" Height="296" Margin="35,35,0,35"  VerticalAlignment="Top" Width="710" x:Name="AllFriends" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Foreground="White" Background="#FF2E2E2E" BorderBrush="{x:Null}">
+                <ListView HorizontalAlignment="Left" Height="296" Margin="35,35,0,35"  VerticalAlignment="Top" Width="710" x:Name="AllPosts" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Foreground="White" Background="#FF2E2E2E" BorderBrush="{x:Null}">
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel  Width="{Binding ActualWidth, ElementName=list}"/>
@@ -74,7 +74,7 @@
             </StackPanel>
         </ScrollViewer>
 
-
+        <Frame NavigationUIVisibility="Hidden" x:Name="frame"  />
     </Grid>
 
 </Window>

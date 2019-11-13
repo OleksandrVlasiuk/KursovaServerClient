@@ -34,11 +34,11 @@ namespace Kursova
             {
                 List<PostModel> list;
                 string token;
-                using (StreamReader reader = new StreamReader("../../../Loginning/ForTokens.txt"))
+                using (StreamReader reader = new StreamReader(Environment.CurrentDirectory+@"\ForTokens.txt"))
                 {
                     token = reader.ReadLine();
                 }
-                HttpWebRequest httpWebRequest = WebRequest.CreateHttp("https://localhost:44396/api/post/get");
+                HttpWebRequest httpWebRequest = WebRequest.CreateHttp("https://localhost:44395/api/post/get");
                 httpWebRequest.Method = "GET";
                 httpWebRequest.ContentType = "application/json";
                 httpWebRequest.Headers.Add(HttpRequestHeader.Authorization, $"Bearer {token}");
@@ -50,18 +50,18 @@ namespace Kursova
                     list = JsonConvert.DeserializeObject<List<PostModel>>(json);
                     foreach (var item in list)
                     {
-                        item.File = "https://localhost:44396/api/content/ProductImages/" + item.File;
+                        item.File = "https://localhost:44395/api/content/ProductImages/" + item.File;
                     }
                     
                 }
                     AllPosts.ItemsSource = list;
 
-                HttpWebRequest httpWebRequest3 = WebRequest.CreateHttp("https://localhost:44396/api/friend/getfriend");
+                HttpWebRequest httpWebRequest3 = WebRequest.CreateHttp("https://localhost:44395/api/friend/getfriend");
                 httpWebRequest3.Method = "GET";
                 httpWebRequest3.ContentType = "application/json";
                 httpWebRequest3.Headers.Add(HttpRequestHeader.Authorization, $"Bearer {token}");
                 List<FriendModel> friendModels ;
-                List<editInnerAccountViewModel> fri = new List<editInnerAccountViewModel>();
+                List<string> friId = new List<string>();
                 WebResponse response3 = httpWebRequest3.GetResponse();
                 using (StreamReader reader = new StreamReader(response3.GetResponseStream()))
                 {
@@ -69,52 +69,41 @@ namespace Kursova
                     friendModels = JsonConvert.DeserializeObject<List<FriendModel>>(json);
                     foreach (var item in friendModels)
                     {
-                        //fri.Add();
+                        friId.Add(item.UserAccount_id);
                     }
 
                 }
-                AllPosts.ItemsSource = list;
-                /////////////////////////////////////////////
-                List<FriendModel> friends;
-                List<string> fr = new List<string>();
-                HttpWebRequest httpWebRequest2 = WebRequest.CreateHttp("https://localhost:44396/api/friends/getfriend");
-                httpWebRequest2.Method = "GET";
-                httpWebRequest2.ContentType = "application/json";
-                httpWebRequest2.Headers.Add(HttpRequestHeader.Authorization, $"Bearer {token}");
 
-                WebResponse response2 = httpWebRequest2.GetResponse();
-                using (StreamReader reader = new StreamReader(response2.GetResponseStream()))
-                {
-                    string json = reader.ReadToEnd();
-                    friends = JsonConvert.DeserializeObject<List<FriendModel>>(json);                   
-                }
-                foreach (var t in friends)
-                {
-                    fr.Add(t.UserAccount_id);
-                }
+                ////////////////////////////////////  
+                //HttpWebRequest httpWebRequest2 = WebRequest.CreateHttp("https://localhost:44395/api/UserAccount/getIcons");
+                //httpWebRequest2.Method = "GET";
+                //httpWebRequest2.ContentType = "application/json";
+                //httpWebRequest2.Headers.Add(HttpRequestHeader.Authorization, $"Bearer {token}");
 
-
-                //HttpWebRequest httpWebRequest3 = WebRequest.CreateHttp("https://localhost:44396/api/UserAccount/getIcons");
-                //httpWebRequest3.Method = "GET";
-                //httpWebRequest3.ContentType = "application/json";
-                //httpWebRequest3.Headers.Add(HttpRequestHeader.Authorization, $"Bearer {token}");
-                
                 //using (StreamWriter Writer = new StreamWriter(httpWebRequest.GetRequestStream()))
                 //{
-                //    Writer.Write(JsonConvert.SerializeObject(fr));
+                //    Writer.Write(JsonConvert.SerializeObject(friId));
                 //}
 
-                //WebResponse response3 = httpWebRequest2.GetResponse();
+                //WebResponse response2 = httpWebRequest2.GetResponse();
 
                 //using (StreamReader reader = new StreamReader(response3.GetResponseStream()))
                 //{
                 //    string json = reader.ReadToEnd();
-                //    List<editInnerAccountViewModel> list = JsonConvert.DeserializeObject<List<editInnerAccountViewModel>>(json);
-                //    foreach (var item in list)
+                //    List<UserAccountModel> icons = JsonConvert.DeserializeObject<List<UserAccountModel>>(json);
+                //    foreach (var item in icons)
                 //    {
 
-                //        item.Image = "https://localhost:44396/api/content/ProductImages/" + item.Image;
+                //        item.Image = "https://localhost:44395/api/content/ProductImages/" + item.Image;
                 //    }
+                //    List<PostModel> frPosts = new List<PostModel>();
+
+                //    foreach (var t in icons)
+                //    {
+                //     //   frPosts.AddRange(t.Posts);
+
+                //    }
+                //    list.AddRange(frPosts);
                 //    AllPosts.ItemsSource = list;
                 //}
 

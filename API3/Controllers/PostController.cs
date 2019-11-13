@@ -16,6 +16,8 @@ using vcn.Entities;
 
 namespace API3.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class PostController : Controller
     {
         private readonly EFContext _context;
@@ -58,18 +60,12 @@ namespace API3.Controllers
                 }
                 Post post = new Post()
                 {
-                    Id = model.Id,
-                    File = nameOfImage,
                     MyComment = model.MyComment,
+                    File = nameOfImage,
                     Likes = model.Likes,
                     UserAccount_id = model.UserAccount_id
                 };
                 _context.Posts.Add(post);
-
- 
-
-
-            _context.Posts.Add(post);
             _context.SaveChanges();
                 return Ok();
             }

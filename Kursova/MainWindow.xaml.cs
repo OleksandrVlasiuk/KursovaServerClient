@@ -70,7 +70,7 @@ namespace Loginning
 
                 if (token != null)
                 {
-                    var writer = new StreamWriter(System.IO.File.OpenWrite(@"..\..\ForTokens.txt"));
+                    var writer = new StreamWriter(System.IO.File.OpenWrite(Environment.CurrentDirectory + @"\ForTokens.txt"));
                     writer.WriteLine($"{token}");
                     writer.Close();
 

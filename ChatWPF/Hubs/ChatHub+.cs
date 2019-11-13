@@ -1,4 +1,5 @@
 ﻿using ChatAndComentaries;
+using ChatAndComentaries.Models;
 using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
