@@ -46,7 +46,7 @@ namespace Loginning.Pages
                 info.TelephoneNumber = Name.Text;
                 info.Email = Email.Text;
 
-                HttpWebRequest httpWebRequest = WebRequest.CreateHttp("https://localhost:44395/api/UserAccount/register");
+                HttpWebRequest httpWebRequest = WebRequest.CreateHttp("http://localhost:2202/api/UserAccount/register");
                 httpWebRequest.Method = "POST";
                 httpWebRequest.ContentType = "application/json";
                 using (StreamWriter Writer = new StreamWriter(httpWebRequest.GetRequestStream()))

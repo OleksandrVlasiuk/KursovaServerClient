@@ -63,7 +63,7 @@ namespace API3.Controllers
                     MyComment = model.MyComment,
                     File = nameOfImage,
                     Likes = model.Likes,
-                    UserAccount_id = model.UserAccount_id
+                    UserAccount_id = user.Id
                 };
                 _context.Posts.Add(post);
             _context.SaveChanges();
@@ -88,6 +88,7 @@ namespace API3.Controllers
                 MyComment = t.MyComment,
                 UserAccount_id = t.UserAccount_id
             }).ToList();
+            string json = JsonConvert.SerializeObject(posts);
             return Ok(posts);
         }
         //DELETE api/values/5

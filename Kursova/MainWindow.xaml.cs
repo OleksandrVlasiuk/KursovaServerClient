@@ -49,11 +49,11 @@ namespace Loginning
         {
             try
             {
-                LoginViewModel info = new LoginViewModel();
-                info.Login = Log.Text;
-                info.Password = Pas.Password;
                 string token;
-                HttpWebRequest httpWebRequest = WebRequest.CreateHttp("https://localhost:44395/api/UserAccount/login");
+                LoginViewModel info = new LoginViewModel();
+                 info.Login = Log.Text;
+                info.Password = Pas.Password;
+                HttpWebRequest httpWebRequest = WebRequest.CreateHttp("http://localhost:2202/api/UserAccount/login");
                 httpWebRequest.Method = "POST";
                 httpWebRequest.ContentType = "application/json";
                 using (StreamWriter Writer = new StreamWriter(httpWebRequest.GetRequestStream()))
@@ -61,7 +61,8 @@ namespace Loginning
                     Writer.Write(JsonConvert.SerializeObject(info));
                 }
 
-                WebResponse webResponse = httpWebRequest.GetResponse();
+                    WebResponse webResponse = httpWebRequest.GetResponse();
+
 
                 using (StreamReader reader = new StreamReader(webResponse.GetResponseStream()))
                 {

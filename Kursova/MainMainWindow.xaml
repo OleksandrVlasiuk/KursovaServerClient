@@ -19,11 +19,11 @@
             </StackPanel>
         </Grid>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20" >
-            <TextBlock FontFamily="Nirmala UI" Text="Jack" FontSize="30" Margin="20" VerticalAlignment="Bottom" Foreground="White"/>
+            <TextBlock FontFamily="Nirmala UI" Text="Jack" Name="MainName" FontSize="30" Margin="20" VerticalAlignment="Bottom" Foreground="White"/>
             <StackPanel HorizontalAlignment="Right">
-                <Ellipse Height="150" Width="150" Stroke="White" StrokeThickness="3">
+                <Ellipse   Name="MainImage" Height="150" Width="150" Stroke="White" StrokeThickness="3">
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="Assets/ForAcc1.jpg" Stretch="UniformToFill"/>
+                        <ImageBrush ImageSource="{Binding Path=Me.Image}" Stretch="UniformToFill"/>
                     </Ellipse.Fill>
                 </Ellipse>
             </StackPanel>
@@ -33,16 +33,16 @@
             <materialDesign:PackIcon Kind="AccountSearch" Foreground="White" VerticalAlignment="Center"/>
         </StackPanel>
         <ListView Name="FriendIcons" Height="72" Width="596" Margin="10,150,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"  ScrollViewer.HorizontalScrollBarVisibility="Hidden" Foreground="White" Background="#FF2E2E2E" BorderBrush="{x:Null}">
-            <ListView.ItemsPanel>
+            <!--<ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel  Width="{Binding ActualWidth, ElementName=lv}"/>
+                    <WrapPanel  Width="{Binding ActualWidth, ElementName=friendModels}"/>
                 </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
+            </ListView.ItemsPanel>-->
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Ellipse  Height="70" Width="70" Margin="10" Stroke="White" StrokeThickness="3" MouseDown="Ellipse_MouseDown">
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="{Binding File}" Stretch="UniformToFill"/>
+                            <ImageBrush ImageSource="{Binding Path = Image}" Stretch="UniformToFill"/>
                         </Ellipse.Fill>
                     </Ellipse>
                 </DataTemplate>
@@ -52,20 +52,21 @@
         <ScrollViewer Margin="0,227,0,10">
             <StackPanel Width="790">
                 <ListView HorizontalAlignment="Left" Height="296" Margin="35,35,0,35"  VerticalAlignment="Top" Width="710" x:Name="AllPosts" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Foreground="White" Background="#FF2E2E2E" BorderBrush="{x:Null}">
-                    <ListView.ItemsPanel>
+                    <!--<ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel  Width="{Binding ActualWidth, ElementName=list}"/>
                         </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
+                    </ListView.ItemsPanel>-->
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Background="Transparent">
-                                <TextBlock Foreground="Transparent" Text="{Binding Id}" />
+                                <TextBlock Foreground="Transparent" Text="{Binding MyComment}" />
                                 <Image Width="100" Height="100"
                        Source="{Binding File}" />
-                                <StackPanel HorizontalAlignment="Left">
-                                    <materialDesign:PackIcon Kind="Heart" Foreground="Black" VerticalAlignment="Center" MouseDoubleClick="PackIcon_MouseDoubleClick"/>
-                                    <materialDesign:PackIcon Kind="Comment" Foreground="Black" VerticalAlignment="Center"/>
+                                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
+                                    <materialDesign:PackIcon Kind="Heart" Foreground="White" VerticalAlignment="Center" MouseDoubleClick="PackIcon_MouseDoubleClick"/>
+                                    <TextBlock Text="{Binding Likes}" />
+                                    <materialDesign:PackIcon Kind="Comment" Foreground="White" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </StackPanel>
                         </DataTemplate>

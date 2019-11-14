@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API3.Entities;
+using API3.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -36,7 +37,18 @@ namespace API3.Controllers
             {
                 friends.Add(item.FriendOf.UserAccountOf);
             }
-            string json = JsonConvert.SerializeObject(friends);
+            List<editInnerAccountViewModel> users = friends.Select(t => new editInnerAccountViewModel()
+            {
+                Description = t.Description,
+                Image = t.Image,
+                Email = t.Email,
+                Login = t.UserName,
+                Password = t.PasswordHash,
+                Name = t.Name,
+                PhoneNumber = t.PhoneNumber
+            }).ToList(); ;
+
+            string json = JsonConvert.SerializeObject(users);
             return Content(json, "application/json");
         }
 
@@ -49,8 +61,8 @@ namespace API3.Controllers
         {
             UserAccount login = await _userManager.FindByNameAsync(this.User.Identity.Name);
 
-            if (_context.UserFriends.FirstOrDefault(t => (t.UserAccount_id == login.Id && t.FriendOf_id == friendId)) == null)
-            {
+            //if (_context.UserFriends.FirstOrDefault(t => (t.UserAccount_id == login.Id && t.FriendOf_id == friendId)) == null)
+            //{
 
                 UserFriend ua = new UserFriend() {
                     UserAccount_id=login.Id,
@@ -59,8 +71,8 @@ namespace API3.Controllers
                 _context.UserFriends.Add(ua);
                 _context.SaveChanges();
                 return Ok();
-            }
-            return BadRequest();
+            //}
+            //return BadRequest();
         }
 
         // DELETE api/values/5

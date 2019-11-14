@@ -29,13 +29,14 @@ namespace Kursova.Pages
             InitializeComponent();
             try
             {
+
                 List<PostModel> list;
                 string token;
-                using (StreamReader Writer = new StreamReader("../../../Loginning/ForTokens.txt"))
+                using (StreamReader reader = new StreamReader(Environment.CurrentDirectory + @"\ForTokens.txt"))
                 {
-                    token = Writer.ReadLine();
+                    token = reader.ReadLine();
                 }
-                HttpWebRequest httpWebRequest = WebRequest.CreateHttp("https://localhost:44396/api/post/get");
+                HttpWebRequest httpWebRequest = WebRequest.CreateHttp("http://localhost:2202/api/post/get");
                 httpWebRequest.Method = "GET";
                 httpWebRequest.ContentType = "application/json";
                 httpWebRequest.Headers.Add(HttpRequestHeader.Authorization, $"Bearer {token}");
@@ -47,38 +48,96 @@ namespace Kursova.Pages
                     list = JsonConvert.DeserializeObject<List<PostModel>>(json);
                     foreach (var item in list)
                     {
-                        item.File = "https://localhost:44396/api/content/ProductImages/" + item.File;
+                        item.File = "http://localhost:2202/api/content/ProductImages/" + item.File;
                     }
-                    
+
                 }
                 AllPosts.ItemsSource = list;
                 //////////////////////////////////////////////
-                editInnerAccountViewModel MyInfo = new editInnerAccountViewModel();
-                HttpWebRequest httpWebRequest2 = WebRequest.CreateHttp("https://localhost:44396/api/UserAccount/OutputAccount");
+                HttpWebRequest httpWebRequest2 = WebRequest.CreateHttp("http://localhost:2202/api/UserAccount/OutputAccount");
                 httpWebRequest2.Method = "GET";
                 httpWebRequest2.ContentType = "application/json";
                 httpWebRequest2.Headers.Add(HttpRequestHeader.Authorization, $"Bearer {token}");
+
                 WebResponse response2 = httpWebRequest2.GetResponse();
+
                 using (StreamReader reader = new StreamReader(response2.GetResponseStream()))
                 {
                     string json = reader.ReadToEnd();
-                    MyInfo = JsonConvert.DeserializeObject<editInnerAccountViewModel>(json);
+                    editInnerAccountViewModel Me = JsonConvert.DeserializeObject<editInnerAccountViewModel>(json);
+                    Me.Image = "http://localhost:2202/api/content/ProductImages/" + Me.Image;
+                    MainName.Text = Me.Name;
+                    if (Me.Image != null) Me.Image = "Assets / NoImage.png";
+                    MainName.Text = Me.Name;
+                    MyIcon.DataContext = Me.Image;
+                    em.Text = Me.Email;
+                    lo.Text = Me.Name;
+                    ph.Text = Me.PhoneNumber;
+                    na.Text = Me.Login;
                 }
-                MainName.Text = MyInfo.Login;
-                MyIcon.DataContext = MyInfo.Image;
-                em.Text = MyInfo.Email;
-                pa.Text = "*******";
-                ph.Text = MyInfo.PhoneNumber;
-                na.Text = MyInfo.Name;
 
             }
             catch (Exception ex) { MessageBox.Show(ex.Message); }
-            
+
         }
 
         private void CloseProgram_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.GoBack();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string image64 = Image64.Text;
+            int likes = 0;
+            string MyCom = null;
+            PostModel info = new PostModel();
+            info.File = image64;
+            info.Likes = likes;
+            info.MyComment = MyCom;
+            string token;
+            using (StreamReader reader = new StreamReader(Environment.CurrentDirectory + @"\ForTokens.txt"))
+            {
+                token = reader.ReadLine();
+            }
+            HttpWebRequest httpWebRequest = WebRequest.CreateHttp("http://localhost:2202/api/post/AddPost");
+            httpWebRequest.Method = "POST";
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Headers.Add(HttpRequestHeader.Authorization, $"Bearer {token}");
+            using (StreamWriter Writer = new StreamWriter(httpWebRequest.GetRequestStream()))
+            {
+                Writer.Write(JsonConvert.SerializeObject(info));
+            }
+            WebResponse response = httpWebRequest.GetResponse();
+            MessageBox.Show("Successfuly added");
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            editInnerAccountViewModel info = new editInnerAccountViewModel();
+            info.Name = na.Text;
+            info.Login = lo.Text;
+            info.Email = em.Text;
+            info.PhoneNumber = ph.Text;
+            string token;
+            using (StreamReader reader = new StreamReader(Environment.CurrentDirectory + @"\ForTokens.txt"))
+            {
+                token = reader.ReadLine();
+            }
+            HttpWebRequest httpWebRequest = WebRequest.CreateHttp("http://localhost:2202/api/UserAccount/EditAccount");
+            httpWebRequest.Method = "PUT";
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Headers.Add(HttpRequestHeader.Authorization, $"Bearer {token}");
+            using (StreamWriter Writer = new StreamWriter(httpWebRequest.GetRequestStream()))
+            {
+                Writer.Write(JsonConvert.SerializeObject(info));
+            }
+            WebResponse response = httpWebRequest.GetResponse();
+            MessageBox.Show("Successfuly changed");
+
+
+
         }
     }
 }

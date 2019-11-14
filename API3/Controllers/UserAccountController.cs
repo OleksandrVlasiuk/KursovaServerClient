@@ -67,7 +67,14 @@ namespace API3.Controllers
         public async Task<IActionResult> GetAccount()
         {
             UserAccount user = await _userManager.FindByNameAsync(this.User.Identity.Name);
-            string json = JsonConvert.SerializeObject(user);
+            editInnerAccountViewModel resault = new editInnerAccountViewModel();
+            resault.Image = user.Image;
+            resault.Name = user.UserName;
+            resault.Email = user.Email;
+            resault.Login = user.Name;
+            resault.PhoneNumber = user.PhoneNumber;
+            resault.Description = user.Description;
+            string json = JsonConvert.SerializeObject(resault);
             return Content(json,"application/json");
            
         }
@@ -94,7 +101,7 @@ namespace API3.Controllers
             try
             {
                 UserAccount user = await _userManager.FindByNameAsync(model.Login);
-                if (user != null)
+                  if (user != null)
                 {
                     var result = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
                     if (!result.Succeeded)
@@ -118,6 +125,7 @@ namespace API3.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody]AddAccountViewModel model)
         {
+
             UserAccount user = new UserAccount()
             {
                 UserName = model.Login,

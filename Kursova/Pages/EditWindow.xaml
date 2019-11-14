@@ -34,7 +34,7 @@
                 <StackPanel HorizontalAlignment="Right">
                     <Ellipse Name="MyIcon"  Height="150" Width="150" Stroke="White" StrokeThickness="3">
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="{Binding MyInfo.Image}" Stretch="UniformToFill"/>
+                            <ImageBrush ImageSource="{Binding Image}" Stretch="UniformToFill"/>
                         </Ellipse.Fill>
                     </Ellipse>
 
@@ -46,46 +46,41 @@
                     <Grid Height="30" Width="250">
                         <TextBlock Width="75" HorizontalAlignment="Left" Text="New name : " FontSize="10" TextWrapping="Wrap"/>
                         <TextBox Name="na" Width="100"/>
-                        <Button HorizontalAlignment="Right" Content="OK" FontSize="10" Margin="10 0" Height="20" Padding="10 0"/>
                     </Grid>
                 </ListViewItem>
                 <ListViewItem Height="50" Width="260">
                     <Grid Height="30" Width="250">
                         <TextBlock Width="70" HorizontalAlignment="Left" Text="New email : " FontSize="10" TextWrapping="Wrap"/>
                         <TextBox Name="em"  Margin="75,0,49,0"/>
-                        <Button HorizontalAlignment="Right" Content="OK" FontSize="10" Margin="10 0" Height="20" Padding="10 0"/>
                     </Grid>
                 </ListViewItem>
                 <ListViewItem Height="50" Width="260">
                     <Grid Height="30" Width="250">
                         <TextBlock  Width="100" HorizontalAlignment="Left"   Text="New phone number : " FontSize="10" TextWrapping="Wrap"/>
                         <TextBox Name="ph" Margin="100,0,49,0"/>
-                        <Button HorizontalAlignment="Right" Content="OK" FontSize="10" Margin="10 0" Height="20" Padding="10 0"/>
                     </Grid>
                 </ListViewItem>
                 <ListViewItem Height="50" Width="260">
                     <Grid Height="30" Width="250">
-                        <TextBlock Width="75" HorizontalAlignment="Left"  Text="New password :" FontSize="10" TextWrapping="Wrap"/>
-                        <TextBox Name="pa" Width="100"/>
-                        <Button HorizontalAlignment="Right" Content="OK" FontSize="10" Margin="10 0" Height="20" Padding="10 0"/>
+                        <TextBlock Width="75" HorizontalAlignment="Left"  Text="New login :" FontSize="10" TextWrapping="Wrap"/>
+                        <TextBox Name="lo" Width="100"/>
                     </Grid>
+                </ListViewItem>
+                <ListViewItem Height="50" Width="260">
+                    <Button HorizontalAlignment="Left" Height="25" Width="260" Content="OK" Click="Button_Click_1" FontSize="10" Background="#FF0A5795" />
                 </ListViewItem>
                 <ListViewItem Height="50" Width="260">
                     <Grid Height="30" Width="250">
                         <TextBlock Width="75" HorizontalAlignment="Left"  Text="Add new post :" FontSize="10" TextWrapping="Wrap"/>
-                        <TextBox Width="100"/>
-                        <Button HorizontalAlignment="Right" Content="..." FontSize="10" Margin="10 0" Height="20" Padding="10 0" Background="#FF0B528B"/>
+                        <TextBox Name="Image64" Width="100"/>
+                      
 
                     </Grid>
                 </ListViewItem>
-                <ListViewItem Height="50" Width="260">
+      
+                <ListViewItem Height="91" Width="260">
                     <Grid Height="75" Width="250">
-                        <Image Margin="0,0,2,0" RenderTransformOrigin="0.5,0.5" Height="65"  VerticalAlignment="Top" />
-                    </Grid>
-                </ListViewItem>
-                <ListViewItem Height="75" Width="260">
-                    <Grid Height="75" Width="250">
-                        <Button Margin="10,29,10,0" RenderTransformOrigin="0.5,0.5" Content="Create" Height="36"  VerticalAlignment="Top" />
+                        <Button Margin="10,29,10,0" RenderTransformOrigin="0.5,0.5" Content="Create" Height="36"  VerticalAlignment="Top" Click="Button_Click" />
                     </Grid>
                 </ListViewItem>
             </ListView>

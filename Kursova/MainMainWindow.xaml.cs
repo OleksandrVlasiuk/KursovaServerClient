@@ -38,7 +38,7 @@ namespace Kursova
                 {
                     token = reader.ReadLine();
                 }
-                HttpWebRequest httpWebRequest = WebRequest.CreateHttp("https://localhost:44395/api/post/get");
+                HttpWebRequest httpWebRequest = WebRequest.CreateHttp("http://localhost:2202/api/post/get");
                 httpWebRequest.Method = "GET";
                 httpWebRequest.ContentType = "application/json";
                 httpWebRequest.Headers.Add(HttpRequestHeader.Authorization, $"Bearer {token}");
@@ -50,62 +50,41 @@ namespace Kursova
                     list = JsonConvert.DeserializeObject<List<PostModel>>(json);
                     foreach (var item in list)
                     {
-                        item.File = "https://localhost:44395/api/content/ProductImages/" + item.File;
+                        item.File = "http://localhost:2202/api/content/ProductImages/" + item.File;
                     }
                     
                 }
                     AllPosts.ItemsSource = list;
-
-                HttpWebRequest httpWebRequest3 = WebRequest.CreateHttp("https://localhost:44395/api/friend/getfriend");
+                ////////////////////////////////
+                HttpWebRequest httpWebRequest3 = WebRequest.CreateHttp("http://localhost:2202/api/friends/getfriend");
                 httpWebRequest3.Method = "GET";
                 httpWebRequest3.ContentType = "application/json";
                 httpWebRequest3.Headers.Add(HttpRequestHeader.Authorization, $"Bearer {token}");
-                List<FriendModel> friendModels ;
-                List<string> friId = new List<string>();
+                List<editInnerAccountViewModel> friendModels ;
                 WebResponse response3 = httpWebRequest3.GetResponse();
                 using (StreamReader reader = new StreamReader(response3.GetResponseStream()))
                 {
                     string json = reader.ReadToEnd();
-                    friendModels = JsonConvert.DeserializeObject<List<FriendModel>>(json);
-                    foreach (var item in friendModels)
-                    {
-                        friId.Add(item.UserAccount_id);
-                    }
-
+                    friendModels = JsonConvert.DeserializeObject<List<editInnerAccountViewModel>>(json);
                 }
 
                 ////////////////////////////////////  
-                //HttpWebRequest httpWebRequest2 = WebRequest.CreateHttp("https://localhost:44395/api/UserAccount/getIcons");
-                //httpWebRequest2.Method = "GET";
-                //httpWebRequest2.ContentType = "application/json";
-                //httpWebRequest2.Headers.Add(HttpRequestHeader.Authorization, $"Bearer {token}");
+                HttpWebRequest httpWebRequest2 = WebRequest.CreateHttp("http://localhost:2202/api/UserAccount/OutputAccount");
+                httpWebRequest2.Method = "GET";
+                httpWebRequest2.ContentType = "application/json";
+                httpWebRequest2.Headers.Add(HttpRequestHeader.Authorization, $"Bearer {token}");
 
-                //using (StreamWriter Writer = new StreamWriter(httpWebRequest.GetRequestStream()))
-                //{
-                //    Writer.Write(JsonConvert.SerializeObject(friId));
-                //}
+                WebResponse response2 = httpWebRequest2.GetResponse();
 
-                //WebResponse response2 = httpWebRequest2.GetResponse();
-
-                //using (StreamReader reader = new StreamReader(response3.GetResponseStream()))
-                //{
-                //    string json = reader.ReadToEnd();
-                //    List<UserAccountModel> icons = JsonConvert.DeserializeObject<List<UserAccountModel>>(json);
-                //    foreach (var item in icons)
-                //    {
-
-                //        item.Image = "https://localhost:44395/api/content/ProductImages/" + item.Image;
-                //    }
-                //    List<PostModel> frPosts = new List<PostModel>();
-
-                //    foreach (var t in icons)
-                //    {
-                //     //   frPosts.AddRange(t.Posts);
-
-                //    }
-                //    list.AddRange(frPosts);
-                //    AllPosts.ItemsSource = list;
-                //}
+                using (StreamReader reader = new StreamReader(response2.GetResponseStream()))
+                {
+                    string json = reader.ReadToEnd();
+                    editInnerAccountViewModel Me = JsonConvert.DeserializeObject<editInnerAccountViewModel>(json);
+                        Me.Image = "http://localhost:2202/api/content/ProductImages/" + Me.Image;
+                    MainName.Text = Me.Name;
+                    if (Me.Image != null) Me.Image = "Assets / NoImage.png";
+                    MainImage.DataContext = Me;
+                }
 
 
             }
