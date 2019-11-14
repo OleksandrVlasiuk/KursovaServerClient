@@ -71,7 +71,6 @@ namespace API3.Controllers
             resault.Image = user.Image;
             resault.Name = user.UserName;
             resault.Email = user.Email;
-            resault.Login = user.Name;
             resault.PhoneNumber = user.PhoneNumber;
             resault.Description = user.Description;
             string json = JsonConvert.SerializeObject(resault);
@@ -171,6 +170,7 @@ namespace API3.Controllers
                         user.Name = model.Name;
                         user.Description = model.Description;
                         user.Email = model.Email;
+                        user.UserName = model.Login;
                         user.PhoneNumber = model.PhoneNumber;
                         _context.SaveChanges();
                         return Ok();

@@ -43,7 +43,7 @@ namespace Loginning.Pages
                 info.Login = Login.Text;
                 info.Password = Password.Text;
                 info.Name = Name.Text;
-                info.TelephoneNumber = Name.Text;
+                info.TelephoneNumber = Phone.Text;
                 info.Email = Email.Text;
 
                 HttpWebRequest httpWebRequest = WebRequest.CreateHttp("http://localhost:2202/api/UserAccount/register");

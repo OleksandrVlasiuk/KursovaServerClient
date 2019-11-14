@@ -68,12 +68,12 @@ namespace Kursova.Pages
                     Me.Image = "http://localhost:2202/api/content/ProductImages/" + Me.Image;
                     MainName.Text = Me.Name;
                     if (Me.Image != null) Me.Image = "Assets / NoImage.png";
-                    MainName.Text = Me.Name;
+                    MainName.Text = Me.Login;
                     MyIcon.DataContext = Me.Image;
                     em.Text = Me.Email;
-                    lo.Text = Me.Name;
+                    lo.Text = Me.Login;
                     ph.Text = Me.PhoneNumber;
-                    na.Text = Me.Login;
+                    na.Text = Me.Name;
                 }
 
             }
