@@ -71,7 +71,6 @@ namespace Kursova.Pages
                     MainName.Text = Me.Login;
                     MyIcon.DataContext = Me.Image;
                     em.Text = Me.Email;
-                    lo.Text = Me.Login;
                     ph.Text = Me.PhoneNumber;
                     na.Text = Me.Name;
                 }
@@ -117,7 +116,6 @@ namespace Kursova.Pages
         {
             editInnerAccountViewModel info = new editInnerAccountViewModel();
             info.Name = na.Text;
-            info.Login = lo.Text;
             info.Email = em.Text;
             info.PhoneNumber = ph.Text;
             string token;
